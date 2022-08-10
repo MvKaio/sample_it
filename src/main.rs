@@ -1,6 +1,8 @@
 use clap::Parser;
 use clap::Subcommand;
 
+mod database;
+
 #[derive(Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
 struct Args {
