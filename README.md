@@ -27,9 +27,9 @@ As an user, I would like to generate random subsets from a given collection. In 
 
 ## Technologies
 
-- Backend: Rust, using the [actix framework](https://github.com/actix/actix-web);
+- Backend: [Rust](https://www.rust-lang.org/), using the [actix framework](https://github.com/actix/actix-web);
 - [SQLite](https://www.sqlite.org/index.html): Relational database;
 - [CBC](https://github.com/coin-or/Cbc): Open-Source solver for linear programs;
-- Framework: [Vuejs](https://vuejs.org/).
+- Frontend: [Vuejs](https://vuejs.org/).
 
 This project is being developed as an assignment for the Software Engineering class @dcc/ufmg.
