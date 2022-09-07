@@ -18,6 +18,8 @@ As an user, I would like to manage my collections, items and labels. I would lik
 
 As an user, I would like to generate random subsets from a given collection. In this raffle, I want to specify the number of items, and restrictions of the type “At least $x$ and at most $y$ items with this label.” It would be nice to be able to specify the random seed and have the option of removing the items from the database.
 
+[Here](https://www.figma.com/file/6aL6cJVWIaWudIQTumFRf1/Sample-It?node-id=0%3A1) you can find sketches for the page designs.
+
 ## Developers
 
 - Natan Ventura - Frontend
