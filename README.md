@@ -2,23 +2,11 @@
 
 An interface for managing collections of labeled items and generating random subsets with specified restrictions.
 
-## User Stories
-
-- As a maths teacher, I want to select random questions from a database, specifying that I want $2$ easy, $3$ medium and $1$ hard question in the exam. Furthermore, I could also set the number of trigonometry questions to be at least $1$ and at most $2$. And so on.
-
-- As a playlist maker, I would like to select some musics for a playlist with $15$ songs. From those musics, I want at least $3$, and at most $5$ pop songs; no more than one sad song; at least $4$ electronic songs; and so on.
-
-## Functionality
-
-1. List, Create, Update and Delete: Collections, Items and Labels
-
-As an user, I would like to manage my collections, items and labels. I would like to be able to import and export them to the interface; and be able to quickly access recently used collections.
-
-2. Random Sampling
-
-As an user, I would like to generate random subsets from a given collection. In doing so, I want to specify the number of items to be selected, and add restrictions of the type “At least $x$ and at most $y$ items with this label.” It would be nice to be able to specify the random seed and have the option of removing the items from the database.
-
-[Here](https://www.figma.com/file/6aL6cJVWIaWudIQTumFRf1/Sample-It?node-id=0%3A1) you can find sketches for the page designs.
+## Table of Contents
+1. [Developers](#developers)
+2. [Technologies](#technologies)
+3. [Sprint Backlog](#sprint-backlog)
+4. [Product Backlog](#product-backlog)
 
 ## Developers
 
@@ -35,3 +23,41 @@ As an user, I would like to generate random subsets from a given collection. In 
 - Frontend: [Vuejs](https://vuejs.org/).
 
 This project is being developed as an assignment for the Software Engineering class @dcc/ufmg.
+
+## Sprint Backlog
+
+- Technical Tasks:
+	- Gain familiarity with the technologies being used. [Gabriel, Kaio, Mariano, Natan]
+	- Design the app's stylesheets [Gabriel, Natan].
+
+- User Story: As an user, I would like to manage collections of items using the website.
+	- Tasks:
+		- Create the web pages. [Gabriel, Natan]
+		- Create the database schema. [Mariano]
+		- Implement functions to communicate with the database. [Kaio, Mariano]
+		- Create the application routes. [Kaio, Mariano]
+	- Done Criteria:
+		- Being able to easily view, create, update and delete the objects in the website.
+
+- User Story: As an user, I would like to use files to import and export collections.
+	- Tasks:
+		- Investigate how to get user input from the interface. [Gabriel, Natan]
+		- Update the pages to include import/export. [Gabriel, Natan]
+		- Define the format of the files. [Kaio, Mariano]
+		- Implement the conversion from the files, and database update. [Kaio, Mariano]
+	- Done Criteria:
+		- Usability of the file format is intuitive and easy.
+		- Integration between file input and interface input works without flaws.
+
+- User Story: As an user, I would like to generate random subsets from a given collection, specifying restrictions.
+	- Tasks:
+		- Create the webpage to generate subsets. [Gabriel, Natan]
+		- Implement the business logic of the random sampling. [Kaio, Mariano]
+	- Done Criteria:
+		- Generate a sample including many restrictions.
+
+## Product Backlog
+
+- User Story: As an user, I would like to choose the random seed to be used in the sampling.
+- User Story: As an user, I would like to share the results of a sampling. 
+- User Story: As an user, I would like to the labels to have different colors depending on the name.
