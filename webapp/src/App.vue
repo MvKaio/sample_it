@@ -1,13 +1,16 @@
 <template>
-  <MainHeader/>
-  <ListElements title="Colections"/>
-</template>
+    <MainHeader/>
+    <ListElements title="Colections" />
+  </template>
 
 <script>
 import MainHeader from './components/MainHeader.vue'
 import ListElements from './components/ListElements.vue';
 
 export default {
+  data(){
+    return {}
+  },
   name: 'App',
   components: {
     MainHeader,
