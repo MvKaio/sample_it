@@ -1,6 +1,6 @@
 <template>
     <MainHeader/>
-    <ListElements title="Colections" />
+    <ListElements title="Items" />
   </template>
 
 <script>

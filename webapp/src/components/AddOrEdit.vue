@@ -1,6 +1,6 @@
 <template>
     <div class="AddOrEdit">
-        <h3>{{isEdit ? "Edit" : "Add"}}</h3>
+        <h3>{{varIsEdit ? "Edit" : "Add"}}</h3>
         <label>Name:</label>
         <input type="text" v-model="varName"/>
         <br>
@@ -15,10 +15,10 @@
             <input type="button" @click="addLabel(varVal)" value="Add Label" />
             <ShowLabel v-for="lb in varElmLabels" :key="lb" :name="lb" :deleteFunction="delLabel"></ShowLabel>
         </div>
-        <input type="button" @click="isEdit ? edit(id) : add()" :value="isEdit ? 'Edit' : 'Add'">
+        <input type="button" @click="isEdit ? editFunction(varName, varDesc, varElmLabels,id) : addFunction(varName, varDesc,varElmLabels)" :value="varIsEdit ? 'Edit' : 'Add'">
+        <input type="button" @click="cancel" value="Cancel" />
     </div>
-</template>
-  
+</template> 
 <script>
 import ShowLabel from './ShowLabel.vue'
     export default {
@@ -61,17 +61,17 @@ import ShowLabel from './ShowLabel.vue'
             default() {
                 return new Set;
             }
-        }
+        },
+        addFunction: Function,
+        editFunction: Function
     },
     methods: {
-        edit(obj) {
-            // nothing
-            console.log(obj);
-        },
-        add() {
-            // nothing
-        },
         cancel() {
+            this.varIsEdit = false,
+            this.varDesc = '',
+            this.varName = '',
+            this.varVal = '',
+            this.varElmLabels = new Set()
         },
         addLabel() {
             if(this.varVal == "") 
@@ -82,7 +82,7 @@ import ShowLabel from './ShowLabel.vue'
             this.varVal = "";
         },
         delLabel(lb){
-            this.varElmLabels.delete(lb)
+            this.varElmLabels.delete(lb) 
         }
     },
     components: { ShowLabel }
