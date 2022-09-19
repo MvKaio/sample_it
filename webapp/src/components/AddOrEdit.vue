@@ -2,7 +2,8 @@
     <div class="AddOrEdit">
         <h3>{{varIsEdit ? "Edit" : "Add"}}</h3>
         <label>Name:</label>
-        <input type="text" v-model="varName"/>
+        <label v-if="varIsEdit">{{varName}}</label>
+        <input type="text" v-model="varName" v-else />
         <br>
         <label>Description:</label>
         <input type="text-area" v-model="varDesc" />
@@ -62,16 +63,34 @@ import ShowLabel from './ShowLabel.vue'
                 return new Set;
             }
         },
+        setIsEdit: Function,
         addFunction: Function,
         editFunction: Function
     },
+    watch: {
+        isEdit: function(newVal){
+            if(newVal){
+                console.log("AQUI")
+                this.varDesc = this.desc
+                this.varElmLabels = this.elmLabels
+                this.varName = this.name
+                this.varIsEdit = true
+            } else {
+                this.varDesc = ''
+                this.varElmLabels = new Set()
+                this.varName = ''
+                this.varIsEdit= false
+            }
+        }
+    },
     methods: {
         cancel() {
-            this.varIsEdit = false,
-            this.varDesc = '',
-            this.varName = '',
-            this.varVal = '',
+            this.varIsEdit = false
+            this.varDesc = ''
+            this.varName = ''
+            this.varVal = ''
             this.varElmLabels = new Set()
+            this.setIsEdit(false)
         },
         addLabel() {
             if(this.varVal == "") 

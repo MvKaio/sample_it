@@ -1,6 +1,6 @@
 <template>
     <div class="AppElement">
-        <span class="name">{{name}}</span> <span class="edit">Edit</span> <span class="delete">Delete</span>
+        <span class="name">{{name}}</span> <span class="edit" @click="editFun(name)">Edit</span> <span class="delete" @click="delFun(name)">Delete</span>
     </div>
 </template>
   
@@ -9,7 +9,9 @@
     name: 'AppElement',
     props: {
         name: String,
-        id: Number
+        id: Number,
+        delFun: Function,
+        editFun: Function
     }
   }
 </script>

@@ -1,8 +1,8 @@
 <template>
   <div class="ListElements">
     <h2>{{title}}</h2>
-    <AddOrEdit :hasLabels="true" :isEdit="false" :addFunction="addElm" :editFunction="editElm" ></AddOrEdit>
-    <AppElement v-for="elm in elms" v-bind:key=elm.id :id=elm.id :name=elm.name />
+    <AddOrEdit :hasLabels="true" :isEdit="isEdit" :addFunction="addElm" :editFunction="editElm" :desc="desc" :elmLabels="elmLabels" :setIsEdit="setIsEdit" :name="name"></AddOrEdit>
+    <AppElement v-for="name in elms" v-bind:key="name[0]" :name="name[0]" :delFun="removeElm" :editFun="editForm"/>
   </div>
 </template>
 
@@ -13,7 +13,11 @@ import AddOrEdit from './AddOrEdit.vue';
     name: 'ListElements',
     data(){
       return {
-        elms: [],
+        elms: new Map(),
+        isEdit: false,
+        elmLabels: new Set(),
+        name: '',
+        desc: ''
       }
     },
     components: {
@@ -21,19 +25,34 @@ import AddOrEdit from './AddOrEdit.vue';
     AppElement
 },
     methods: {
-      addElm(name,desc,lbs){
+      setIsEdit(vl){
+        this.isEdit = vl
+      },
+      addElm(name,desc,elmLabels){
+        console.log("BBBB")
         if(name == '')
           return
-        for(var i =0; i < this.elms.length; i++){
-          if(this.elms[i].name == name)
-            return}
-        this.elms.push({name: name, desc: desc, lbs: lbs})
+        if(this.elms.has(name))
+          return
+        this.elms.set(name,{desc: desc, elmLabels: elmLabels})
       },
-      editElm(name,desc, lbs,x){
-        this.elms[x].name = name
-        this.elms[x].desc = desc
-        this.elms[x].lbs = lbs
-      }
+      editElm(name,desc, elmLabels){
+        this.elms.set(name,{desc: desc, elmLabels: elmLabels})
+        this.isEdit = false
+      },
+      removeElm(name){
+        console.log("AAAAAA");
+        this.elms.delete(name);
+      },
+      editForm(name){
+        if(!this.elms.has(name))
+          return
+          this.name = name
+          var obj = this.elms.get(name)
+          this.desc = obj.desc
+          this.elmLabels = obj.elmLabels
+          this.isEdit = true
+        }
     },
     props: {
       title: String
