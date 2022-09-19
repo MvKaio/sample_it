@@ -15,7 +15,7 @@
             <input type="button" @click="addLabel(varVal)" value="Add Label" />
             <ShowLabel v-for="lb in varElmLabels" :key="lb" :name="lb" :deleteFunction="delLabel"></ShowLabel>
         </div>
-        <input type="button" @click="isEdit ? editFunction(varName, varDesc, varElmLabels,id) : addFunction(varName, varDesc,varElmLabels)" :value="varIsEdit ? 'Edit' : 'Add'">
+        <input type="button" @click="submitAndClear" :value="varIsEdit ? 'Edit' : 'Add'">
         <input type="button" @click="cancel" value="Cancel" />
     </div>
 </template> 
@@ -83,6 +83,13 @@ import ShowLabel from './ShowLabel.vue'
         },
         delLabel(lb){
             this.varElmLabels.delete(lb) 
+        },
+        submitAndClear(){
+            if(this.varIsEdit)
+                this.editFunction(this.varName, this.varDesc, this.varElmLabels,this.id)
+            else    
+                this.addFunction(this.varName, this.varDesc, this.varElmLabels)
+            this.cancel()
         }
     },
     components: { ShowLabel }
