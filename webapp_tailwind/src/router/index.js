@@ -21,6 +21,12 @@ const router = createRouter({
       name: "Create Collection",
       component: () => import("../views/CreateCollectionView.vue"),
     },
+    {
+      path: "/addItem/:collection",
+      name: "Add Item",
+      component: () => import("../views/AddItemView.vue"),
+      props: true
+    },
   ],
 });
 

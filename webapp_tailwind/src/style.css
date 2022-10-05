@@ -20,10 +20,11 @@
 
 .button:hover {
   background-color: rgb(192 132 255);
+  cursor: pointer;
 }
 
 .wrapper {
-  width: 75%;
+  width: 90%;
   height: 75%;
   border: 2px solid none;
   border-radius: 20px;
@@ -31,14 +32,41 @@
   background-color: #3d3d3d;
   height: 80%;
   top: 0;
+  overflow: hidden;
 }
 
 @layer components {
   .link {
-    @apply text-neutral-50 hover:text-purple-400 duration-500;
+    @apply text-neutral-50 hover:text-purple-400 hover:cursor-pointer duration-500;
   }
 }
 
+label {
+  font-size: 1.4rem;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #212121;
+  border-radius: 20px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(192 132 255);
+  transition-duration: 500ms;
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: purple;
+}
 
 /*
 :root {

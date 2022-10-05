@@ -1,118 +1,14 @@
 {
   "collections": [
     {
-      "id": 1,
-      "name": "collection_1_teste",
-      "lastUpdated": "03/10/2022",
-      "labels": ["label teste", "label teste 2", "label teste 3"],
-      "items": [
-        {
-          "id": 1,
-          "name": "item teste 1",
-          "description": "descricao item teste 1",
-          "labels": ["label teste", "label teste 2", "label teste 3"]
-        },
-        {
-          "id": 2,
-          "name": "item teste 2",
-          "description": "descricao item teste 2",
-          "labels": ["label teste", "label teste 2", "label teste 3"]
-        },
-        {
-          "id": 3,
-          "name": "item teste 3",
-          "description": "descricao item teste 3",
-          "labels": ["label teste", "label teste 2", "label teste 3"]
-        },
-        {
-          "id": 4,
-          "name": "item teste 4",
-          "description": "descricao item teste 4",
-          "labels": ["label teste", "label teste 2", "label teste 3"]
-        },
-        {
-          "id": 5,
-          "name": "item teste 5",
-          "description": "descricao item teste 5",
-          "labels": ["label teste", "label teste 2", "label teste 3"]
-        }
-      ]
-    },
-    {
-        "id": 2,
-        "name": "collection_2_teste",
-        "lastUpdated": "03/10/2022",
-        "labels": ["label teste", "label teste 2", "label teste 3"],
-        "items": [
-          {
-            "id": 1,
-            "name": "item teste 1",
-            "description": "descricao item teste 1",
-            "labels": ["label teste", "label teste 2", "label teste 3"]
-          },
-          {
-            "id": 2,
-            "name": "item teste 2",
-            "description": "descricao item teste 2",
-            "labels": ["label teste", "label teste 2", "label teste 3"]
-          },
-          {
-            "id": 3,
-            "name": "item teste 3",
-            "description": "descricao item teste 3",
-            "labels": ["label teste", "label teste 2", "label teste 3"]
-          },
-          {
-            "id": 4,
-            "name": "item teste 4",
-            "description": "descricao item teste 4",
-            "labels": ["label teste", "label teste 2", "label teste 3"]
-          },
-          {
-            "id": 5,
-            "name": "item teste 5",
-            "description": "descricao item teste 5",
-            "labels": ["label teste", "label teste 2", "label teste 3"]
-          }
-        ]
-      },
-      {
-        "id": 3,
-        "name": "collection_3_teste",
-        "lastUpdated": "03/10/2022",
-        "labels": ["label teste", "label teste 2", "label teste 3"],
-        "items": [
-          {
-            "id": 1,
-            "name": "item teste 1",
-            "description": "descricao item teste 1",
-            "labels": ["label teste", "label teste 2", "label teste 3"]
-          },
-          {
-            "id": 2,
-            "name": "item teste 2",
-            "description": "descricao item teste 2",
-            "labels": ["label teste", "label teste 2", "label teste 3"]
-          },
-          {
-            "id": 3,
-            "name": "item teste 3",
-            "description": "descricao item teste 3",
-            "labels": ["label teste", "label teste 2", "label teste 3"]
-          },
-          {
-            "id": 4,
-            "name": "item teste 4",
-            "description": "descricao item teste 4",
-            "labels": ["label teste", "label teste 2", "label teste 3"]
-          },
-          {
-            "id": 5,
-            "name": "item teste 5",
-            "description": "descricao item teste 5",
-            "labels": ["label teste", "label teste 2", "label teste 3"]
-          }
-        ]
-      }
+      "name": "so mais uma ",
+      "description": "ok",
+      "labels": [
+        "fasdfa"
+      ],
+      "lastUpdated": "05/10/2022",
+      "items": [],
+      "id": 3
+    }
   ]
 }
