@@ -15,8 +15,8 @@
         <div class="text-2xl text-center inline">
             My Samples
         </div>
-
     </div>
+    <div class=" bg-purple-400 rounded-lg h-2 w-4/5 m-auto my-4"></div>
 </template>
 
 <style scoped>

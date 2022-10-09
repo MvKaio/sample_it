@@ -4,11 +4,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .link {
+    @apply text-neutral-50 hover:text-purple-400 hover:cursor-pointer duration-500;
+  }
+  .component-container {
+    @apply w-4/5 h-4/5 m-auto;
+  }
+}
+
 * {
   font-family: "Oleo Script", cursive;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  text-decoration: none;
+}
+
+:root {
+  --primary-color: #c084fc;
+  --background-color: #3d3d3d88;
+  --input-background-color: #3d3d3d00;
 }
 
 .button {
@@ -21,28 +37,6 @@
 .button:hover {
   background-color: rgb(192 132 255);
   cursor: pointer;
-}
-
-.wrapper {
-  width: 90%;
-  height: 75%;
-  border: 2px solid none;
-  border-radius: 20px;
-  box-shadow: 2rem 2rem 3rem 2rem black;
-  background-color: #3d3d3d;
-  height: 80%;
-  top: 0;
-  overflow: hidden;
-}
-
-@layer components {
-  .link {
-    @apply text-neutral-50 hover:text-purple-400 hover:cursor-pointer duration-500;
-  }
-}
-
-label {
-  font-size: 1.4rem;
 }
 
 ::-webkit-scrollbar {

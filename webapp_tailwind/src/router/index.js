@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 
-const routes = [];
-
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -22,10 +20,14 @@ const router = createRouter({
       component: () => import("../views/CreateCollectionView.vue"),
     },
     {
-      path: "/addItem/:collection",
+      path: "/addItem",
       name: "Add Item",
       component: () => import("../views/AddItemView.vue"),
-      props: true
+    },
+    {
+      path: "/collection/:id",
+      name: "Collection",
+      component: () => import("../views/CollectionView.vue"),
     },
   ],
 });
