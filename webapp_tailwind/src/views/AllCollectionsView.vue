@@ -29,16 +29,14 @@ async function deleteCollection(id) {
                 
 <template>
     <div class="component-container">
-        <div class="grid grid-cols-3">
-            <div class="text-xl text-center inline">Name</div>
-            <div class="text-xl text-center inline">Options</div>
-            <div class="text-xl text-center inline">Last Updated</div>
+        <div class="grid grid-cols-3 h-[8%]">
+            <div class="text-2xl flex items-center justify-center">Name</div>
+            <div class="text-2xl flex items-center justify-center">Options</div>
+            <div class="text-2xl flex items-center justify-center">Last Updated</div>
         </div>
-
-        <div class="h-4 "></div>
-        <div class="h-4/5 overflow-auto">
+        <div class="h-[82%] overflow-auto">
             <transition-group name="fade" mode="out-in" tag="div">
-                <div class="grid grid-cols-3" v-for="collection in collections" :key="collection.id">
+                <div class="grid grid-cols-3 black-bg mb-4 mx-[1%]" v-for="collection in collections" :key="collection.id">
                     <div class="text-xl text-center inline link">
                         <router-link :to="{name: 'Collection', params: {id: collection.id}}">{{collection.name}}
                         </router-link>
@@ -51,6 +49,12 @@ async function deleteCollection(id) {
                     <div class="text-xl text-center inline">{{collection.lastUpdated}}</div>
                 </div>
             </transition-group>
+        </div>
+        <div class="space-x-4 h-[10%] flex items-center">
+            <div class="text-center w-full space-x-[1%]">
+                <router-link to="/createCollection" class="link"><input type="button" class="button"
+                        value="Create a New Collection"></router-link>
+            </div>
         </div>
 
     </div>

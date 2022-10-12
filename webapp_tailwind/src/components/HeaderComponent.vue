@@ -4,10 +4,10 @@
 <template>
     <div class="grid grid-cols-4 pt-8">
         <div class="text-2xl px-8 text-center inline">
-            <router-link to="/" class="link">Home</router-link>
+            <router-link to="/" class="link" id="homeLink">Home</router-link>
         </div>
         <div class="text-2xl text-center inline">
-            <router-link to="/collections" class="link">All Collections</router-link>
+            <router-link to="/collections" class="link" id="allCollectionsLink">All Collections</router-link>
         </div>
         <div class="text-2xl text-center inline">
             <router-link to="/createCollection" class="link">New Collection</router-link>

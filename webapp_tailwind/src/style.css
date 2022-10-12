@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Oleo+Script:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Exo:400,700");
+@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -14,7 +15,8 @@
 }
 
 * {
-  font-family: "Oleo Script", cursive;
+  /* font-family: "Oleo Script", cursive; */
+  font-family: var(--font-primary);
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -22,9 +24,22 @@
 }
 
 :root {
+  --font-primary: "Ubuntu", serif;
+  --font-secundary: "Archivo", serif;
   --primary-color: #c084fc;
   --background-color: #3d3d3d88;
   --input-background-color: #3d3d3d00;
+  --color-black: #212121;
+}
+
+.font-primary {
+}
+
+.black-bg {
+  background: var(--color-black);
+  border-bottom: 4px solid var(--primary-color);
+  border-radius: 10px;
+  padding: 5px;
 }
 
 .button {
@@ -60,6 +75,59 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: purple;
+}
+
+.field {
+  background: #212121;
+  border-bottom: 4px dashed var(--primary-color);
+  border-radius: 5px;
+  outline: none;
+  height: 1.9rem;
+  padding: 10px;
+}
+
+.number {
+  background: #212121;
+  border-bottom: 4px dashed var(--primary-color);
+  border-radius: 5px;
+  outline: none;
+  height: 1.9rem;
+  padding: 20px 10px;
+}
+
+.textarea {
+  background: #212121;
+  border-bottom: 4px dashed var(--primary-color);
+  border-radius: 5px;
+  outline: none;
+  height: 80%;
+  padding: 10px;
+  width: 60%;
+  resize: none;
+}
+
+select {
+  background: #212121;
+  border-bottom: 4px dashed var(--primary-color);
+  border-radius: 5px;
+  outline: none;
+  padding: 10px;
+}
+
+.label {
+  background: #212121;
+  border-bottom: 2px solid var(--primary-color);
+  border-radius: 5px;
+  outline: none;
+  padding: 5px;
+}
+
+.input-group {
+  align-items: center;
+}
+
+.word-break {
+  word-wrap: break-word;
 }
 
 /*

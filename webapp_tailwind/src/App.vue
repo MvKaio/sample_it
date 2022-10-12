@@ -3,7 +3,7 @@ import Header from './components/HeaderComponent.vue'
 </script>
 
 <template>
-  <div class="max-h-screen h-screen bg text-white flex items-center">
+  <div class="max-h-screen h-screen bg text-white flex items-center overflow-auto">
     <div class="wrapper mx-auto">
       <Header></Header>
       <router-view v-slot="{ Component }">
@@ -21,14 +21,14 @@ import Header from './components/HeaderComponent.vue'
   height: 95%;
   border-radius: 20px;
   box-shadow: 2rem 2rem 3rem 2rem black;
-  background-color: var(--background-color);
-  overflow: hidden;
+  overflow: auto;
+  /* background-color: var(--background-color); */
 }
 
 .bg {
   width: 100%;
   height: 100vh;
-  background-size: 300% 300%;
+  background-size: 150% 150%;
   background-image: linear-gradient(-45deg,
       rgb(187, 187, 187) 0%,
       rgb(136, 136, 136) 25%,
