@@ -1,6 +1,7 @@
 use clap::Parser;
 use clap::Subcommand;
 
+mod server;
 mod database;
 
 #[derive(Parser, Debug)]
@@ -19,16 +20,20 @@ enum Action {
     /// List items in the collection
     List,
     /// Generate a sample of the itens, given a set of restrictions
-    Sample
+    Sample,
+	/// Runs the web server
+	Run
 }
 
-fn main() {
+#[actix_web::main]
+async fn main() {
     let args = Args::parse();
 
     match args.action {
         Action::Add => sample_it::add(),
         Action::Remove => sample_it::remove(),
         Action::List => sample_it::list(),
-        Action::Sample => sample_it::sample()
+        Action::Sample => sample_it::sample(),
+        Action::Run => server::run().await.unwrap()
     };
 }
