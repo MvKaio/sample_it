@@ -1,1 +1,4 @@
+# Contains compilation targets
 /target
+# Matches with vim's undo files
+.*\.un~
