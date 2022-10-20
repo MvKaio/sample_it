@@ -3,6 +3,8 @@ use std::fs;
 use std::collections::{HashMap, HashSet};
 use rusqlite::{Connection, Result};
 
+pub mod model;
+
 #[derive(Debug, PartialEq)]
 pub struct Item {
     description: String,
