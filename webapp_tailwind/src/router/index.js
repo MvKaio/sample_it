@@ -34,6 +34,11 @@ const router = createRouter({
       name: "Generate Sample",
       component: () => import("../views/GenerateSampleView.vue"),
     },
+    {
+      path: "/editCollection/:id",
+      name: "EditCollection",
+      component: () => import("../views/EditCollectionView.vue"),
+    }
   ],
   mode: "history",
 });

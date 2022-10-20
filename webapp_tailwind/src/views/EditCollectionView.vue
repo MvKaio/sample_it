@@ -1,25 +1,41 @@
 <script setup>
 import Title from '../components/TitleComponent.vue'
 import Header from '../components/HeaderComponent.vue'
+import { useRoute } from 'vue-router'
+import router from '../router'
 import { watch, onMounted, ref } from 'vue'
 
-const collections = ref([])
+const route = useRoute()
+const collectionID = route.params.id
+
+const collection = ref({})
+
+//Refs para name, description, label, labels e items da collection
+const name = ref("")
+const description = ref("")
+const label = ref("")
+const labels = ref([])
+const items = ref([])
+
+//Refs para name, description, label e labels da collection
+
+const item_name = ref("")
+const item_description = ref("")
+const item_label_select = ref("")
+const item_label = ref("")
+const item_labels = ref([])
 
 onMounted(async () => {
-    watch(
-        () => history.state, (state) => {
-            console.log(state);
-        }
-    )
-    fetch('http://localhost:3000/collections')
+    fetch(`http://localhost:3000/collections/${collectionID}`)
         .then(r => r.json())
-        .then(r => collections.value = r)
+        .then(r => {
+            name.value = r.name
+            description.value = r.description
+            labels.value = r.labels
+            items.value = r.items
+            label.value = r.value
+        })
 })
-
-// Retornar o último elemento do array
-function last(array) {
-    return array[array.length - 1];
-}
 
 function clearItemFields() {
     item_name.value = ''
@@ -35,11 +51,10 @@ function clearDescriptionFields() {
     name.value = ''
     description.value = ''
     items.value = []
-
 }
 
 // Cria a coleção se todos os campos estão preenchidos. Envia os dados em "data" pelo método "POST"
-async function createCollection() {
+async function EditCollection() {
 
     if (name.value.length > 0 && description.value.length > 0 && Array.from(labels.value).length > 0) {
         const data = {
@@ -52,18 +67,15 @@ async function createCollection() {
 
         const dataJson = JSON.stringify(data);
 
-        const req = await fetch("http://localhost:3000/collections", {
-            method: "POST",
+        const req = await fetch(`http://localhost:3000/collections/${collectionID}`, {
+            method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: dataJson
         });
-
         if (!req.ok) {
             throw new Error(req.status);
         }
-        clearDescriptionFields();
-        clearItemFields();
-        form_item.value = false;
+        router.push('/collections')
     }
 }
 
@@ -84,7 +96,6 @@ async function addItemFunction() {
             labels: item_labels.value,
         }
         items.value.push(item)
-        console.log(items.value)
         clearItemFields()
     }
     else {
@@ -137,38 +148,12 @@ async function addItemLabelSelect() {
     item_label_select.value = ''
 }
 
-//Função que deleta label a partir do seu índice
-function deleteLabel(index) {
-    this.labels.splice(index, 1);
-    console.log(labels.value)
-}
-
-function deleteItemLabel(index) {
-    this.item_labels.splice(index, 1);
-    console.log(item_labels.value)
-}
-
 //Definindo a data de alteração da coleção
 var date = new Date();
 var dd = String(date.getDate()).padStart(2, '0');
 var mm = String(date.getMonth() + 1).padStart(2, '0');
 var yyyy = date.getFullYear();
 date = dd + '/' + mm + '/' + yyyy;
-
-//Refs para name, description, label, labels e items da collection
-const name = ref("")
-const description = ref("")
-const label = ref("")
-const labels = ref([])
-const items = ref([])
-
-//Refs para name, description, label e labels da collection
-
-const item_name = ref("")
-const item_description = ref("")
-const item_label_select = ref("")
-const item_label = ref("")
-const item_labels = ref([])
 
 const form_item = ref(false)
 
@@ -177,7 +162,7 @@ const form_item = ref(false)
             
 <template>
     <transition name="fade" mode="out-in">
-        <div v-if="!form_item" class="component-container">
+        <div class="component-container">
             <div class="form h-full text-center">
                 <form v-on:submit.prevent class="h-full" @submit="" autocomplete="off">
                     <div class="input-group h-[10%] py-[1%]">
@@ -212,114 +197,18 @@ const form_item = ref(false)
                     <div class="flex flex-col pt-4 space-y-4 h-[40%] w-3/5 m-auto overflow-auto">
                         <div v-for="(lb, index) in labels" class="inline">
                             <span class="label">{{lb}}</span>
-                            <font-awesome-icon icon="trash" class="link hover:text-red-600 mx-2"
-                                @click="deleteLabel(index)" />
                         </div>
                     </div>
                     <div class="space-x-4 h-[10%] flex items-center justify-center  ">
-                        <input type="button" class="button" @click="createCollection" value="Create Empty Collection">
-                        <input type="button" class="button" @click="addFirstItemFunction" value="Add an Item">
+                        <input type="button" class="button" @click="EditCollection" value="Edit">
+                        <input type="button" class="button" @click="router.push('/collections')" value="Cancel">
                     </div>
 
                 </form>
             </div>
         </div>
         <!-- v-else para renderizar o template de adicionar item -->
-        <div v-else class="component-container">
-            <div class="h-full grid grid-cols-2 overflow-auto">
-                <!-- div dados collection -->
-                <div class="text-center h-full overflow-auto">
-                    <div class="h-[5%] flex items-center justify-center">
-                        <h1 class="text-center text-2xl">Collection name: {{name}}</h1>
 
-                    </div>
-                    <div class="h-[30%] w-[100%] items-center justify-center">
-                        <div class="h[20%] flex items-center justify-center">
-                            <h1 class="text-center text-2xl">Collection description: </h1>
-                        </div>
-                        <div class="h-[80%] black-bg text-left word-break overflow-auto">
-                            <span>{{description}}</span>
-                        </div>
-
-                    </div>
-
-                    <div class="h-[30%] w-[100%] items-center justify-center">
-                        <div class="h[20%] flex items-center justify-center">
-                            <h1 class="text-center text-2xl">Collection Items:</h1>
-                        </div>
-                        <div class="h-[80%] black-bg overflow-auto">
-                            <div v-for="(item, index) in items">{{item.name}}</div>
-                        </div>
-                    </div>
-
-                    <div class="h-[25%] w-[100%] items-center justify-center">
-                        <div class="h[20%] flex items-center justify-center">
-                            <h1 class="text-center text-2xl">Collection Labels:</h1>
-                        </div>
-                        <div class="h-[80%] black-bg overflow-auto">
-                            <div v-for="(lb, index) in labels">{{lb}}</div>
-                        </div>
-                    </div>
-
-                    <div class="space-x-4 h-[10%] flex items-center">
-                        <div class="text-center w-full">
-                            <input type="button" class="button" @click="createCollection" value="Create Collection">
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center h-full">
-                    <form v-on:submit.prevent class="h-full" @submit="" autocomplete="off">
-                        <div class="input-group h-[10%] w-[60%] m-auto">
-                            <div class="text-2xl">
-                                <label for="name">Item Name</label>
-                            </div>
-
-                            <input type="text" class="field w-[100%] text-center" id="name" v-model="item_name">
-                        </div>
-                        <div class="input-group h-[30%] overflow-auto">
-                            <div class="text-2xl">
-                                <label for="description">Item Description</label>
-                            </div>
-
-                            <textarea type="text" class="textarea" id="desription"
-                                v-model="item_description"></textarea>
-                        </div>
-                        <div class="input-group h-[10%] w-[60%] m-auto space-x-[5%]">
-                            <input type="text" class="field w-[60%] text-center" id="label" v-model="item_label"
-                                v-on:keydown.enter.prevent='addItemLabel'>
-                            <input class="button w-[35%]" id="addItemLabelButton" type="button" value="Add New Label"
-                                v-on:click="addItemLabel">
-                        </div>
-                        <div class="input-group h-[10%] w-[60%] m-auto space-x-[5%]">
-                            <select v-model="item_label_select" class="w-[60%]">
-                                <option v-for="(lb, index) in labels">{{lb}}
-                                </option>
-                            </select>
-                            <input class="button w-[35%]" id="addItemLabelButton" type="button" value="Add Item Label"
-                                v-on:click="addItemLabelSelect">
-
-                        </div>
-                        <div class="flex flex-col pt-4 space-y-4 h-[30%] w-3/5 m-auto overflow-auto">
-                            <div v-for="(lb, index) in item_labels" class="inline">
-                                <span class="label">{{lb}}</span>
-                                <font-awesome-icon icon="trash" class="link hover:text-red-600 mx-2"
-                                    @click="deleteItemLabel(index)" />
-                            </div>
-                        </div>
-                        <div class="space-x-4 h-[10%] flex items-center">
-                            <div class="text-center w-full">
-                                <input type="button" class="button" @click="addItemFunction" value="Add this Item">
-                            </div>
-
-
-                        </div>
-
-                    </form>
-
-                </div>
-
-            </div>
-        </div>
     </transition>
 </template>
 

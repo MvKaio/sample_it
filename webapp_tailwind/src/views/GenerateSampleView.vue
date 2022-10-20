@@ -14,7 +14,9 @@ const collections = ref([])
 onMounted(async () => {
     fetch(`http://localhost:3000/collections/${collectionID}`)
         .then(r => r.json())
-        .then(r => collection.value = r)
+        .then(r => {
+            collection.value = r
+        })
 })
 
 function clearConstraint() {

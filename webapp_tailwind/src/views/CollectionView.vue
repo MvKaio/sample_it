@@ -81,7 +81,8 @@ async function deleteCollection() {
                 <div class="text-center w-full space-x-[1%]">
                     <router-link :to="{name: 'Generate Sample', params: {id: route.params.id}}"><input type="button"
                             class="button" value="Generate a New Sample"></router-link>
-                    <input type="button" class="button" value="Edit this collection">
+                    <router-link :to="{name: 'EditCollection', params: {id: route.params.id}}"><input type="button"
+                            class="button" value="Edit"></router-link>
                     <input type="button" class="button" value="Delete this collection" @click="deleteCollection">
                 </div>
             </div>
