@@ -27,6 +27,7 @@ impl Server {
 				.app_data(state.clone())
 				.service(routes::get_home)
 				.service(routes::get_collections)
+				.service(routes::post_collection)
 		})
 			.bind(("127.0.0.1", 8080))?
 			.run();

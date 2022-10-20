@@ -2,3 +2,5 @@
 /target
 # Matches with vim's undo files
 .*\.un~
+# Matches with vim's swap files
+.*\.swp

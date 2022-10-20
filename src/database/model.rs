@@ -21,12 +21,31 @@ pub struct Label {
 
 #[derive(Clone, Serialize, Deserialize)]
 pub struct Collection {
-    id : String,
-    created_at: DateTime<Utc>,
-    updated_at: DateTime<Utc>,
-    title: String,
-    description: String,
-    items: Vec<Item>
+    pub id : String,
+    pub created_at: DateTime<Utc>,
+    pub updated_at: DateTime<Utc>,
+    pub title: String,
+    pub description: String,
+    pub items: Vec<Item>
+}
+
+impl Collection {
+	pub fn new(id : String,
+			   created_at: DateTime<Utc>,
+			   updated_at: DateTime<Utc>,
+			   title: String,
+			   description: String,
+			   items: Vec<Item>
+			   ) -> Self {
+		Collection {
+			id,
+			created_at,
+			updated_at,
+			title,
+			description,
+			items
+		}
+	}
 }
 
 // pub fn get_collection_labels(collection: &Collection) -> Vec<Label>;
