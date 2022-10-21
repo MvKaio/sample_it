@@ -1,7 +1,6 @@
 <script setup>
 import { useRoute } from 'vue-router'
-import router from '../router'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 
 const route = useRoute()
 const collectionID = route.params.id

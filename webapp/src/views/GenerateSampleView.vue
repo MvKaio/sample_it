@@ -1,6 +1,6 @@
 <script setup>
 import { useRoute } from 'vue-router'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 
 const route = useRoute()
 const collectionID = route.params.id
@@ -95,11 +95,6 @@ const constraints = ref([])
                     
 <template>
     <div class="component-container">
-        <!-- <h1 class="text-center text-2xl">Collection name: {{collection.name}}</h1>
-        <h1 class="text-center text-2xl pt-4">Collection description: </h1>
-        <span>{{collection.description}}</span>
-        <h1 class="text-center text-2xl">Collection Items:</h1>
-        <div v-for="(item, index) in collection.items">{{item.name}}</div> -->
 
         <div class="h-full grid grid-cols-2 overflow-auto">
             <!-- div dados collection -->

@@ -12,55 +12,33 @@
         "FADFS",
         "FASDF"
       ],
-      "lastUpdated": "20/10/2022",
-      "items": [
-        {
-          "name": "afdasfdasf",
-          "description": "fasdfasfda",
-          "labels": [
-            "Label 2",
-            "FASDFASF"
-          ]
-        }
-      ],
+      "lastUpdated": "21/10/2022",
+      "items": [],
       "id": 2
     },
     {
-      "name": "afdasfd",
-      "description": "fdsafsa",
+      "name": "New Collection",
+      "description": "Description of the new collection",
       "labels": [
-        "fasf",
-        "fasfdaf",
-        "fasfaf",
-        "fasfd",
-        "Item labellll",
-        "label"
+        "Label 1",
+        "Label 2",
+        "Label 3",
+        "Label 4",
+        "Label 5",
+        "Label 6",
+        "Label 7",
+        "Label 8",
+        "Label 9",
+        "Label 10"
       ],
-      "lastUpdated": "20/10/2022",
+      "lastUpdated": "21/10/2022",
       "items": [
         {
-          "name": "fasfdas",
-          "description": "fafdasf",
+          "name": "Item 1",
+          "description": "Item description 1",
           "labels": [
-            "fasfaf",
-            "fasfd"
-          ]
-        },
-        {
-          "name": "fafasdf",
-          "description": "fadfas",
-          "labels": [
-            "fasf",
-            "fasfdaf"
-          ]
-        },
-        {
-          "name": "Item 3",
-          "description": "Item descriptionnnnnnn",
-          "labels": [
-            "Item labellll",
-            "label",
-            "fasfdaf"
+            "Label 3",
+            "Label 5"
           ]
         }
       ],

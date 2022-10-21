@@ -6,13 +6,13 @@ import Header from './components/HeaderComponent.vue'
   <div class="max-h-screen h-screen bg text-white flex items-center overflow-auto">
     <div class="wrapper mx-auto">
       <Header></Header>
-      <router-view v-slot="{ Component }">
-        <transition name="fade" mode="out-in">
-          <Suspense>
+      <Suspense>
+        <router-view v-slot="{ Component }">
+          <transition name="fade" mode="out-in">
             <component :is="Component" />
-          </Suspense>
-        </transition>
-      </router-view>
+          </transition>
+        </router-view>
+      </Suspense>
     </div>
   </div>
 </template>
