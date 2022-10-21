@@ -25,13 +25,12 @@ async fn get_collections(data: web::Data<ServerState>) -> impl Responder {
 
 #[post("/collections")]
 async fn post_collection(req: web::Json<Collection>, data: web::Data<ServerState>) -> impl Responder {
-	let new_collection = Collection::new(
-		req.id,
-		req.created_at,
-		req.updated_at,
-		String::from(&req.title),
-		String::from(&req.description),
-		vec![]);
+	let new_collection = Collection{
+		name: req.name.clone(),
+		created_at: req.created_at,
+		updated_at: req.updated_at,
+		description: req.description.clone(),
+		items: vec![]};
 
 	println!("[INFO][POST /collections] items are being ignored for now");
 

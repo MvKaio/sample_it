@@ -12,11 +12,10 @@ pub fn get_collections(connection: &Connection) -> Result<Vec<Collection>, Box<d
 
     let query_result = statement.query_map([], |row| {
         Ok(Collection {
-            id: row.get("CollectionId")?,
+            name: row.get("CollectionName")?,
             description: row.get("CollectionDescription")?,
             created_at: chrono::offset::Utc::now(),
             updated_at: chrono::offset::Utc::now(),
-            title: String::from("sdf"),
             items: vec![]
         })
     })?;

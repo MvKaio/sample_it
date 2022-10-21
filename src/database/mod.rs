@@ -23,36 +23,36 @@ pub fn connect() -> Result<Connection, Box<dyn std::error::Error>> {
 
     connection.execute(
         "CREATE TABLE IF NOT EXISTS Collections (
-            CollectionId integer PRIMARY KEY,
-            CollectionDescription text NOT NULL
+            CollectionName text PRIMARY KEY,
+            CollectionDescription text
             )",
         []
     )?;
 
     connection.execute(
         "CREATE TABLE IF NOT EXISTS Labels (
-            LabelId integer PRIMARY KEY,
-            LabelDescription text NOT NULL
+            LabelName text PRIMARY KEY,
+            LabelDescription text
             )",
         []
     )?;
 
     connection.execute(
         "CREATE TABLE IF NOT EXISTS Items (
-            ItemId integer,
-         	CollectionId integer REFERENCES Collection,
-         	ItemDescription text NOT NULL,
-  			PRIMARY KEY (ItemId, CollectionId) 
+            ItemName text,
+         	CollectionName text REFERENCES Collection,
+         	ItemDescription text,
+  			PRIMARY KEY (ItemName, CollectionName) 
             )",
         []
     )?;
 
     connection.execute(
         "CREATE TABLE IF NOT EXISTS ItemsLabels (
-            ItemId integer REFERENCES Items,
-  			CollectionID integer REFERENCES Collections,
-            LabelId integer REFERENCES Labels,
-            PRIMARY KEY (ItemId, CollectionId, LabelId)
+            ItemName text REFERENCES Items,
+  			CollectionName text REFERENCES Collections,
+            LabelName text REFERENCES Labels,
+            PRIMARY KEY (ItemName, CollectionName, LabelName)
             )",
         []
     )?;
