@@ -21,6 +21,14 @@ pub fn connect() -> Result<Connection, Box<dyn std::error::Error>> {
     let connection = Connection::open("database.db")?;
 
     connection.execute(
+        "CREATE TABLE IF NOT EXISTS Collections (
+            CollectionId integer PRIMARY KEY,
+            CollectionDescription text NOT NULL UNIQUE
+            )",
+        []
+    )?;
+
+    connection.execute(
         "CREATE TABLE IF NOT EXISTS Labels (
             LabelId integer PRIMARY KEY,
             LabelDescription text NOT NULL UNIQUE
@@ -30,8 +38,10 @@ pub fn connect() -> Result<Connection, Box<dyn std::error::Error>> {
 
     connection.execute(
         "CREATE TABLE IF NOT EXISTS Items (
-            ItemId integer PRIMARY KEY,
-            ItemDescription text NOT NULL UNIQUE
+            ItemId integer,
+         	CollectionId integer REFERENCES Collection,
+         	ItemDescription text NOT NULL UNIQUE,
+  			PRIMARY KEY (ItemId, CollectionId) 
             )",
         []
     )?;
@@ -39,11 +49,13 @@ pub fn connect() -> Result<Connection, Box<dyn std::error::Error>> {
     connection.execute(
         "CREATE TABLE IF NOT EXISTS ItemsLabels (
             ItemId integer REFERENCES Items,
+  			CollectionID integer REFERENCES Collections,
             LabelId integer REFERENCES Labels,
-            PRIMARY KEY (ItemId, LabelId)
+            PRIMARY KEY (ItemId, CollectionId, LabelId)
             )",
         []
     )?;
+
 
     Ok(connection)
 }
