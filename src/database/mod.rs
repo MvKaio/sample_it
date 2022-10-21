@@ -4,6 +4,7 @@ use std::collections::{HashMap, HashSet};
 use rusqlite::{Connection, Result};
 
 pub mod model;
+pub mod functions;
 
 #[derive(Debug, PartialEq)]
 pub struct Item {
@@ -23,7 +24,7 @@ pub fn connect() -> Result<Connection, Box<dyn std::error::Error>> {
     connection.execute(
         "CREATE TABLE IF NOT EXISTS Collections (
             CollectionId integer PRIMARY KEY,
-            CollectionDescription text NOT NULL UNIQUE
+            CollectionDescription text NOT NULL
             )",
         []
     )?;
@@ -31,7 +32,7 @@ pub fn connect() -> Result<Connection, Box<dyn std::error::Error>> {
     connection.execute(
         "CREATE TABLE IF NOT EXISTS Labels (
             LabelId integer PRIMARY KEY,
-            LabelDescription text NOT NULL UNIQUE
+            LabelDescription text NOT NULL
             )",
         []
     )?;
@@ -40,7 +41,7 @@ pub fn connect() -> Result<Connection, Box<dyn std::error::Error>> {
         "CREATE TABLE IF NOT EXISTS Items (
             ItemId integer,
          	CollectionId integer REFERENCES Collection,
-         	ItemDescription text NOT NULL UNIQUE,
+         	ItemDescription text NOT NULL,
   			PRIMARY KEY (ItemId, CollectionId) 
             )",
         []

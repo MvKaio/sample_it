@@ -2,18 +2,22 @@ use actix_web::{web, get, post, put, delete, HttpResponse, Responder};
 use actix_web::http::header::ContentType;
 use chrono::DateTime;
 
+use crate::database;
+
 use super::ServerState;
 use super::super::database::model::{Item, Label, Collection};
 
 #[get("/")]
 pub async fn get_home() -> impl Responder {
-    HttpResponse::Ok().body("<h1>HTML</h1>")
+    HttpResponse::Ok().body("<h1>Hello :)</h1>")
 }
 
 #[get("/collections")]
 async fn get_collections(data: web::Data<ServerState>) -> impl Responder {
-	let collections = data.collections.lock().unwrap();
-	let response = serde_json::to_string(&(*collections)).unwrap();
+    let connection = data.connection.lock().unwrap();
+    let collections = database::functions::get_collections(&connection).unwrap();
+	let response = serde_json::to_string(&collections).unwrap();
+
 	HttpResponse::Ok()
 		.content_type(ContentType::json())
 		.body(response)
@@ -22,7 +26,7 @@ async fn get_collections(data: web::Data<ServerState>) -> impl Responder {
 #[post("/collections")]
 async fn post_collection(req: web::Json<Collection>, data: web::Data<ServerState>) -> impl Responder {
 	let new_collection = Collection::new(
-		String::from(&req.id),
+		req.id,
 		req.created_at,
 		req.updated_at,
 		String::from(&req.title),

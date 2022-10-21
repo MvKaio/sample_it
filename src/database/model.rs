@@ -3,7 +3,7 @@ use serde::{Serialize, Deserialize};
 
 #[derive(Clone, Serialize, Deserialize)]
 pub struct Item {
-    id: String,
+    id: u32,
     created_at: DateTime<Utc>,
     updated_at: DateTime<Utc>,
     title: String,
@@ -13,7 +13,7 @@ pub struct Item {
 
 #[derive(Clone, Serialize, Deserialize)]
 pub struct Label {
-    id: String,
+    id: u32,
     created_at: DateTime<Utc>,
     updated_at: DateTime<Utc>,
     title: String,
@@ -21,7 +21,7 @@ pub struct Label {
 
 #[derive(Clone, Serialize, Deserialize)]
 pub struct Collection {
-    pub id : String,
+    pub id: u32,
     pub created_at: DateTime<Utc>,
     pub updated_at: DateTime<Utc>,
     pub title: String,
@@ -30,7 +30,7 @@ pub struct Collection {
 }
 
 impl Collection {
-	pub fn new(id : String,
+	pub fn new(id : u32,
 			   created_at: DateTime<Utc>,
 			   updated_at: DateTime<Utc>,
 			   title: String,
