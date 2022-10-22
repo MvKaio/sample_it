@@ -1,0 +1,69 @@
+{
+  "collections": [
+    {
+      "name": "Collection Teste",
+      "description": "DEscricaoooo",
+      "labels": [
+        "Label 1",
+        "Label 2",
+        "Label 3",
+        "Label 4",
+        "FASDFASF",
+        "FADFS",
+        "FASDF"
+      ],
+      "lastUpdated": "21/10/2022",
+      "items": [],
+      "id": 2
+    },
+    {
+      "name": "New Collection",
+      "description": "Description of the new collection",
+      "labels": [
+        "Label 1",
+        "Label 2",
+        "Label 3",
+        "Label 4",
+        "Label 5",
+        "Label 6",
+        "Label 7",
+        "Label 8",
+        "Label 9",
+        "Label 10"
+      ],
+      "lastUpdated": "21/10/2022",
+      "items": [
+        {
+          "name": "Item 1",
+          "description": "Item description 1",
+          "labels": [
+            "Label 3",
+            "Label 5"
+          ]
+        }
+      ],
+      "id": 3
+    }
+  ],
+  "samples": [
+    {
+      "collectionID": "2",
+      "sample_name": "Sample Teste",
+      "sample_description": "Descricao Sample Teste",
+      "sample_size": 7,
+      "sample_constraints": [
+        {
+          "operator": "less_or_equal",
+          "number": 5,
+          "label": "Label 2"
+        },
+        {
+          "operator": "equal",
+          "number": 7,
+          "label": "Label 4"
+        }
+      ],
+      "id": 1
+    }
+  ]
+}
