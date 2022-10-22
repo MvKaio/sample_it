@@ -26,7 +26,7 @@ async function updateCollection() {
 
     if (name.value.length > 0 && description.value.length > 0 && Array.from(labels.value).length > 0) {
         collection.value.items = items
-        collection.value.lastUpdated = date
+        collection.value.updated_at = date
         const data = collection.value
 
         const dataJson = JSON.stringify(data);
@@ -102,10 +102,6 @@ function deleteItemLabel(index) {
 
 //Definindo a data de alteração da coleção
 var date = new Date();
-var dd = String(date.getDate()).padStart(2, '0');
-var mm = String(date.getMonth() + 1).padStart(2, '0');
-var yyyy = date.getFullYear();
-date = dd + '/' + mm + '/' + yyyy;
 
 //Refs para name, description, label, labels e items da collection
 const name = ref("")
@@ -127,8 +123,6 @@ const item_label_select = ref("")
 const item_label = ref("")
 const item_labels = ref([])
 
-const form_item = ref(false)
-
 
 </script>
             
@@ -139,7 +133,8 @@ const form_item = ref(false)
             <div class="text-center h-full overflow-auto">
                 <div class="h-[5%] flex items-center justify-center">
                     <h1 class="text-center text-2xl">Collection: <router-link
-                            :to="{name: 'Collection', params: {id: collection.id}}" id="collectionLink"><span class="link">{{collection.name}}</span>
+                            :to="{name: 'Collection', params: {id: collection.id}}" id="collectionLink"><span
+                                class="link">{{collection.name}}</span>
                         </router-link>
                     </h1>
 
@@ -159,7 +154,12 @@ const form_item = ref(false)
                         <h1 class="text-center text-2xl">Collection Items:</h1>
                     </div>
                     <div class="h-[80%] black-bg overflow-auto">
-                        <div v-for="(item, index) in items">{{item.name}}</div>
+
+                        <div class="mb-4" v-for="(item, index) in items"><span
+                                class="label-pure-black">{{item.name}}</span>
+                        </div>
+
+
                     </div>
                 </div>
 
@@ -167,8 +167,10 @@ const form_item = ref(false)
                     <div class="h[20%] flex items-center justify-center">
                         <h1 class="text-center text-2xl">Collection Labels:</h1>
                     </div>
+
                     <div class="h-[80%] black-bg overflow-auto">
-                        <div v-for="(lb, index) in labels">{{lb}}</div>
+                        <div class=" mb-4" v-for="(lb, index) in labels"><span class="label-pure-black">{{lb}}</span>
+                        </div>
                     </div>
                 </div>
 

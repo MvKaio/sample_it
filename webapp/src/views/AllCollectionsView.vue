@@ -33,7 +33,7 @@ async function deleteCollection(id) {
                         </router-link>
                     </div>
 
-                    <div class="text-xl text-center inline">{{collection.lastUpdated}}</div>
+                    <div class="text-xl text-center inline">{{collection.updated_at}}</div>
 
                     <div class="text-xl text-center inline space-x-5">
                         <!--  -->

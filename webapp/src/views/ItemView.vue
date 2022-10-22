@@ -41,7 +41,7 @@ item.value = collection.value.items[itemID]
                     <h1 class="text-center text-2xl">Item description: </h1>
                 </div>
                 <div class="h-[80%] black-bg text-left word-break overflow-auto">
-                    <span>{{collection.description}}</span>
+                    <span>{{item.description}}</span>
                 </div>
 
             </div>
@@ -51,7 +51,8 @@ item.value = collection.value.items[itemID]
                     <h1 class="text-center text-2xl">Item Labels:</h1>
                 </div>
                 <div class="h-[80%] black-bg overflow-auto">
-                    <div v-for="(lb, index) in item.labels">{{lb}}</div>
+                    <div class=" mb-4 mx-[1%]" v-for="(lb, index) in item.labels"><span
+                            class="label-pure-black">{{lb}}</span></div>
                 </div>
             </div>
 

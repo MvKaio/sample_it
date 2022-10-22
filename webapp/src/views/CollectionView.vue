@@ -27,7 +27,7 @@ async function deleteCollection() {
 
 async function deleteItem(index) {
     collection.value.items.splice(index, 1)
-    collection.value.lastUpdated = date
+    collection.value.updated_at = date
 
     const dataJson = JSON.stringify(collection.value);
     console.log(dataJson)
@@ -44,10 +44,6 @@ async function deleteItem(index) {
 
 //Definindo a data de alteração da coleção
 var date = new Date();
-var dd = String(date.getDate()).padStart(2, '0');
-var mm = String(date.getMonth() + 1).padStart(2, '0');
-var yyyy = date.getFullYear();
-date = dd + '/' + mm + '/' + yyyy;
 
 </script>
                     
@@ -85,18 +81,18 @@ date = dd + '/' + mm + '/' + yyyy;
                 </div>
                 <div class="h-[60%] black-bg overflow-auto">
                     <div class="grid grid-cols-3 mb-4 mx-[1%] space-x-[10%]" v-for="(item, index) in collection.items">
-                        <div class="text-xl text-center inline link label-pure-black">
+                        <div class="text-xl text-centerlink label-pure-black flex items-center justify-center">
                             <router-link
-                                :to="{name: 'View Item', params: {collectionid: collection.id, itemid: index}}">
+                                :to="{name: 'View Item', params: {collectionid: collection.id, itemid: index}}" class="link">
                                 {{item.name}}
                             </router-link>
                         </div>
 
-                        <div class="text-xl text-center inline space-x-[2%] p-2">
+                        <div class="text-xl text-center whitespace-pre space-x-[2%] p-2 overflow-auto">
                             <span class="label-pure-black" v-for="(lb, index) in item.labels">{{lb}}</span>
                         </div>
 
-                        <div class="text-xl text-center inline space-x-[5%] label-pure-black">
+                        <div class="text-xl text-center space-x-[5%] label-pure-black flex items-center justify-center">
 
                             <!-- <router-link :to="{name: 'EditItem', params: {collectionid: collection.id, itemid: index}}">
                                 <font-awesome-icon icon="pen" class="link " />

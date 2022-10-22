@@ -59,7 +59,8 @@ async function EditCollection() {
             name: name.value,
             description: description.value,
             labels: Array.from(labels.value),
-            lastUpdated: date,
+            updated_at: date,
+
             items: items.value,
         }
 
@@ -148,10 +149,10 @@ async function addItemLabelSelect() {
 
 //Definindo a data de alteração da coleção
 var date = new Date();
-var dd = String(date.getDate()).padStart(2, '0');
+/* var dd = String(date.getDate()).padStart(2, '0');
 var mm = String(date.getMonth() + 1).padStart(2, '0');
 var yyyy = date.getFullYear();
-date = dd + '/' + mm + '/' + yyyy;
+date = dd + '/' + mm + '/' + yyyy; */
 
 const form_item = ref(false)
 

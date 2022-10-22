@@ -1,24 +1,41 @@
 {
   "collections": [
     {
-      "name": "Collection Teste",
-      "description": "DEscricaoooo",
+      "name": "Collection Name",
+      "description": "Collection's description",
       "labels": [
         "Label 1",
         "Label 2",
         "Label 3",
         "Label 4",
-        "FASDFASF",
-        "FADFS",
-        "FASDF"
+        "Label 5"
       ],
-      "lastUpdated": "21/10/2022",
-      "items": [],
+      "updated_at": "2022-10-22T18:16:00.652Z",
+      "created_at": "2022-10-22T18:16:00.652Z",
+      "items": [
+        {
+          "name": "Item 1",
+          "description": "Item 1 description",
+          "labels": [
+            "Label 2",
+            "Label 4",
+            "Label 3"
+          ]
+        },
+        {
+          "name": "Item 2",
+          "description": "Item 2 Description",
+          "labels": [
+            "Label 2",
+            "Label 4"
+          ]
+        }
+      ],
       "id": 2
     },
     {
-      "name": "New Collection",
-      "description": "Description of the new collection",
+      "name": "Collection",
+      "description": "Collection Description",
       "labels": [
         "Label 1",
         "Label 2",
@@ -29,16 +46,78 @@
         "Label 7",
         "Label 8",
         "Label 9",
-        "Label 10"
+        "Label 10",
+        "Label 11",
+        "Label 12",
+        "Label 13",
+        "Label 14",
+        "Label 15",
+        "afafdafasfd",
+        "fadfas",
+        "fafdsa",
+        "jhgfjg",
+        "jgfjh",
+        "gjgfjfgh",
+        "jgfjgf",
+        "afdasfas",
+        "fasfdsaf"
       ],
-      "lastUpdated": "21/10/2022",
+      "updated_at": "2022-10-22T18:50:51.473Z",
+      "created_at": "2022-10-22T18:37:18.629Z",
       "items": [
         {
           "name": "Item 1",
-          "description": "Item description 1",
+          "description": "Item 1 description",
           "labels": [
+            "Label 1",
+            "Label 2",
+            "Label 4"
+          ]
+        },
+        {
+          "name": "Item 2",
+          "description": "Item 2 description",
+          "labels": [
+            "Label 5",
+            "Label 6",
+            "Label 7",
+            "Label 8",
+            "Label 9",
+            "Label 10",
+            "Label 11",
+            "Label 12",
+            "Label 13",
+            "Label 14",
+            "Label 15",
+            "Label 2",
+            "Label 4",
+            "Label 1",
             "Label 3",
-            "Label 5"
+            "afafdafasfd",
+            "fadfas",
+            "fafdsa",
+            "jhgfjg",
+            "jgfjh",
+            "gjgfjfgh",
+            "jgfjgf"
+          ]
+        },
+        {
+          "name": "Item 3",
+          "description": "Description",
+          "labels": [
+            "afdasfas",
+            "fasfdsaf",
+            "Label 9",
+            "Label 8",
+            "Label 10",
+            "Label 14",
+            "Label 11",
+            "Label 15",
+            "Label 12",
+            "Label 5",
+            "Label 13",
+            "fadfas"
           ]
         }
       ],
