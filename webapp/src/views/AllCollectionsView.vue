@@ -15,6 +15,17 @@ async function deleteCollection(id) {
     collections.value = await fetch('http://localhost:3000/collections').then((d) => d.json())
 }
 
+function formatDate(dateString) {
+    const date = new Date(dateString)
+    var dd = String(date.getDate()).padStart(2, '0');
+    var mm = String(date.getMonth() + 1).padStart(2, '0');
+    var yyyy = date.getFullYear();
+    var HH = String(date.getHours()).padStart(2, '0');
+    var MM = String(date.getMinutes()).padStart(2, '0');
+    var SS = String(date.getSeconds()).padStart(2, '0');
+    return dd + '/' + mm + '/' + yyyy + ' ' + HH + ':' + MM;
+}
+
 </script>
                 
 <template>
@@ -33,7 +44,7 @@ async function deleteCollection(id) {
                         </router-link>
                     </div>
 
-                    <div class="text-xl text-center inline">{{collection.updated_at}}</div>
+                    <div class="text-xl text-center inline">{{formatDate(collection.updated_at)}}</div>
 
                     <div class="text-xl text-center inline space-x-5">
                         <!--  -->
