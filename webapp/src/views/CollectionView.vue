@@ -119,34 +119,39 @@ if (is_edit) {
         <div v-for="(item, index) in collection.items">{{item.name}}</div> -->
 
         <div class="text-center h-full overflow-auto">
-            <div v-if="editting" class="h-[5%] flex items-center justify-center">
-                <h1 class="text-center text-2xl">Collection name: </h1>
-                <input type="text" class="field text-center mx-4" id="name_editted" v-model="name_editted"
-                    v-on:keydown.enter.prevent=''>
-            </div>
-            <div v-else class="h-[5%] flex items-center justify-center">
-                <h1 class="text-center text-2xl">Collection name: {{collection.name}}</h1>
+            <transition name="fade" mode="out-in">
+                <div v-if="editting" class="h-[5%] flex items-center justify-center">
+                    <h1 class="text-center text-2xl">Collection name: </h1>
+                    <input type="text" class="field text-center mx-4" id="name_editted" v-model="name_editted"
+                        v-on:keydown.enter.prevent=''>
+                </div>
+                <div v-else class="h-[5%] flex items-center justify-center">
+                    <h1 class="text-center text-2xl">Collection name: {{collection.name}}</h1>
 
-            </div>
-            <div v-if="editting" class="h-[30%] w-[100%] items-center justify-center">
-                <div class="h[20%] flex items-center justify-center">
-                    <h1 class="text-center text-2xl">Collection description: </h1>
                 </div>
-                <div class="h-[80%]">
-                    <textarea type="text" class="textarea_vanilla h-full w-full" id="desription_editted"
-                        v-model="description_editted"></textarea>
-                </div>
+            </transition>
+            <transition name="fade" mode="out-in">
+                <div v-if="editting" class="h-[30%] w-[100%] items-center justify-center">
+                    <div class="h[20%] flex items-center justify-center">
+                        <h1 class="text-center text-2xl">Collection description: </h1>
+                    </div>
+                    <div class="h-[80%]">
+                        <textarea type="text" class="textarea_vanilla h-full w-full" id="desription_editted"
+                            v-model="description_editted"></textarea>
+                    </div>
 
-            </div>
-            <div v-else class="h-[30%] w-[100%] items-center justify-center">
-                <div class="h[20%] flex items-center justify-center">
-                    <h1 class="text-center text-2xl">Collection description: </h1>
                 </div>
-                <div class="h-[80%] black-bg text-left word-break overflow-auto">
-                    <span>{{collection.description}}</span>
-                </div>
+                <div v-else class="h-[30%] w-[100%] items-center justify-center">
+                    <div class="h[20%] flex items-center justify-center">
+                        <h1 class="text-center text-2xl">Collection description: </h1>
+                    </div>
+                    <div class="h-[80%] black-bg text-left word-break overflow-auto">
+                        <span>{{collection.description}}</span>
+                    </div>
 
-            </div>
+                </div>
+            </transition>
+
 
             <div class="h-[30%] w-[100%] items-center justify-center">
                 <div class="h-[20%] flex items-center justify-center">
@@ -171,10 +176,10 @@ if (is_edit) {
                         </div>
 
                         <div class="text-xl text-center space-x-[5%] label-pure-black flex items-center justify-center">
-
-                            <!-- <router-link :to="{name: 'EditItem', params: {collectionid: collection.id, itemid: index}}">
+                            <router-link
+                                :to="{name: 'View Item', params: {collectionid: collection.id, itemid: index, edit: 'edit'}}">
                                 <font-awesome-icon icon="pen" class="link " />
-                            </router-link> -->
+                            </router-link>
                             <font-awesome-icon icon="trash" class="link hover:text-red-700"
                                 @click="deleteItem(index)" />
                         </div>
@@ -205,14 +210,8 @@ if (is_edit) {
 
             </div>
 
-            <!-- <div v-if="editting" class="h-[25%] w-[40%] inline-block items-center">
-                <input type="text" class="field w-3/5 text-center" id="label_editted" v-model="label_editted"
-                    v-on:keydown.enter.prevent='addLabel'>
-                <input class="button w-[38%]" id="addLabelButton" type="button" value="Add Label" v-on:click="addLabel">
-            </div> -->
-
             <div v-else class="h-[25%] w-[100%] items-center justify-center">
-                <div class="h[20%] flex items-center justify-center">
+                <div class="flex items-center justify-center">
                     <h1 class="text-center text-2xl">Collection Labels:</h1>
                 </div>
                 <div class="h-[80%] black-bg overflow-auto">

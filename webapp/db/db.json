@@ -68,19 +68,20 @@
       "created_at": "2022-10-22T18:37:18.629Z",
       "items": [
         {
-          "name": "Item 1",
-          "description": "Item 1 description",
+          "name": "Nome editado",
+          "description": "Description Editada",
           "labels": [
             "Label 1",
             "Label 2",
-            "Label 4"
-          ]
+            "Label 4",
+            "Label editadaa"
+          ],
+          "updated_at": "2022-10-23T20:09:14.097Z"
         },
         {
-          "name": "Item 2",
-          "description": "Item 2 description",
+          "name": "Item 2 editado",
+          "description": "Item 2 description editada",
           "labels": [
-            "Label 5",
             "Label 6",
             "Label 7",
             "Label 8",
@@ -101,8 +102,11 @@
             "jhgfjg",
             "jgfjh",
             "gjgfjfgh",
-            "jgfjgf"
-          ]
+            "jgfjgf",
+            "New Label",
+            "Label Editada"
+          ],
+          "updated_at": "2022-10-23T20:19:07.349Z"
         },
         {
           "name": "Item 3",
