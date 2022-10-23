@@ -1,11 +1,9 @@
 use actix_web::{web, get, post, put, delete, HttpResponse, Responder};
 use actix_web::http::header::ContentType;
-use chrono::DateTime;
-
 use crate::database;
 
 use super::ServerState;
-use super::super::database::model::{Item, Label, Collection};
+use super::super::database::model::{Item, Collection};
 
 #[get("/")]
 pub async fn get_home() -> impl Responder {
@@ -25,27 +23,12 @@ async fn get_collections(data: web::Data<ServerState>) -> impl Responder {
 
 #[post("/collections")]
 async fn post_collection(req: web::Json<Collection>, data: web::Data<ServerState>) -> impl Responder {
-	let new_collection = Collection{
-		name: req.name.clone(),
-		created_at: req.created_at,
-		updated_at: req.updated_at,
-		description: req.description.clone(),
-		items: vec![]};
-
 	println!("[INFO][POST /collections] items are being ignored for now");
 
-	let mut collections = data.collections.lock().unwrap();
-	let response = serde_json::to_string(&new_collection).unwrap();
+	//let mut _collections = data.collections.lock().unwrap();
+	//let response = serde_json::to_string(&new_collection).unwrap();
 
-	collections.push(new_collection);
 	HttpResponse::Created()
 		.content_type(ContentType::json())
-		.body(response)
+		.body("")
 }
-
-// #[get("/collections")]
-// #[get("/collection/<id>")]
-// #[get("/collection/<id>/items")]
-// #[get("/collection/<id>/labels")]
-// #[get("/collection/<id>/item/<id>")]
-// #[get("/collection/<id>/label/<id>")]

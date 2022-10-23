@@ -1,5 +1,6 @@
 # Contains compilation targets
 /target
+/webapp/node_modules/*
 # Matches with vim's undo files
 .*\.un~
 # Matches with vim's swap files
