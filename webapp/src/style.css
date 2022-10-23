@@ -110,6 +110,15 @@
   padding: 20px 10px;
 }
 
+.textarea_vanilla {
+  background: #212121;
+  border-bottom: 4px dashed var(--primary-color);
+  border-radius: 5px;
+  outline: none;
+  padding: 10px;
+  resize: none;
+}
+
 .textarea {
   background: #212121;
   border-bottom: 4px dashed var(--primary-color);
