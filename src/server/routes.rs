@@ -1,9 +1,9 @@
 use actix_web::{web, get, post, put, delete, HttpResponse, Responder};
 use actix_web::http::header::ContentType;
 use crate::database;
+use crate::database::model::Collection;
 
 use super::ServerState;
-use super::super::database::model::{Item, Collection};
 
 #[get("/")]
 pub async fn get_home() -> impl Responder {
@@ -23,12 +23,13 @@ async fn get_collections(data: web::Data<ServerState>) -> impl Responder {
 
 #[post("/collections")]
 async fn post_collection(req: web::Json<Collection>, data: web::Data<ServerState>) -> impl Responder {
-	println!("[INFO][POST /collections] items are being ignored for now");
+    let new_collection = req.into_inner();
 
-	//let mut _collections = data.collections.lock().unwrap();
-	//let response = serde_json::to_string(&new_collection).unwrap();
+    let connection = data.connection.lock().unwrap();
+    let new_collection = database::functions::push_collection(&new_collection, &connection).unwrap();
+	let response = serde_json::to_string(&new_collection).unwrap();
 
 	HttpResponse::Created()
 		.content_type(ContentType::json())
-		.body("")
+		.body(response)
 }

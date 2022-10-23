@@ -20,7 +20,9 @@ pub fn get_collections(connection: &Connection) -> Result<Vec<Collection>, Box<d
         })
     })?;
 
-    let query_result = query_result.map(|opt| opt.unwrap());
+    let query_result = query_result.map(|opt| {
+        opt.unwrap()
+    });
     let collections = query_result.map(|collection| {
         let mut collection_with_labels = collection.clone();
         collection_with_labels.labels = get_collection_labels(collection.id, connection).unwrap();
@@ -102,4 +104,72 @@ pub fn get_item_labels(collection_id: u32, item_id: u32, connection: &Connection
     let query_result = query_result.map(|opt| opt.unwrap());
 
     Ok(query_result.collect())
+}
+
+pub fn push_item(item: &Item, collection_id: u32, connection: &Connection) -> Result<Item, Box<dyn Error>> {
+    let mut statement = connection.prepare(format!("
+        INSERT INTO Items (ItemName, ItemDescription, CollectionId)
+        VALUES ('{}', '{}', {})
+    ",  item.name,
+        item.description,
+        collection_id).as_str())?;
+    
+    let rowid = statement.insert([])?;
+    let mut item = item.clone();
+    item.id = rowid as u32;
+
+    for label in item.labels.iter() {
+        let mut label_statement = connection.prepare(format!("
+            INSERT INTO ItemsLabels (CollectionId, ItemId, LabelId)
+            VALUES ({}, {}, {})
+        ", collection_id, item.id, label.id).as_str())?;
+        label_statement.execute([])?;
+    }
+
+    Ok(item)
+}
+
+pub fn push_label(label: &Label, collection_id: u32, connection: &Connection) -> Result<Label, Box<dyn Error>> {
+    let mut statement = connection.prepare(format!("
+        INSERT INTO Labels (LabelName, CollectionId)
+        VALUES ('{}', {})
+    ",  label.name,
+        collection_id).as_str())?;
+    
+    let rowid = statement.insert([])?;
+    
+    let mut label = label.clone();
+    label.id = rowid as u32;
+
+    Ok(label)
+}
+
+pub fn push_collection(collection: &Collection, connection: &Connection) -> Result<Collection, Box<dyn Error>> {
+    let mut statement = connection.prepare(format!("
+        INSERT INTO Collections (CollectionName, CollectionDescription, CreatedAt, UpdatedAt)
+        VALUES ('{}', '{}', '{}', '{}')
+    ",  collection.name,
+        collection.description,
+        collection.created_at.format("%+"),
+        collection.updated_at.format("%+")).as_str())?;
+    
+    let rowid = statement.insert([])?;
+
+    let mut collection = collection.clone();
+    collection.id = rowid as u32;
+
+    collection.labels = collection.labels.iter().map(
+        |label| push_label(label, collection.id, connection).unwrap()
+        ).collect();
+
+    collection.items = collection.items.iter().map(
+        |item| {
+            let mut item_with_correct_labels = item.clone();
+            item_with_correct_labels.labels = item.labels.iter().map(
+                |label| (collection.labels.iter().find(|l| l.name == label.name).unwrap()).clone()
+            ).collect();
+            push_item(&item_with_correct_labels, collection.id, connection).unwrap()
+        }).collect();
+
+    Ok(collection)
 }

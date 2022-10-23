@@ -4,18 +4,22 @@ use serde::{Serialize, Serializer, Deserialize, Deserializer};
 use std::fmt;
 use serde::de::{self, Visitor};
 
+fn default_id() -> u32 { 0 }
+
 // Definition of The Three Main Data Types of the Application
 
-#[derive(Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Item {
+    #[serde(default = "default_id")]
     pub id: u32,
     pub name: String,
     pub description: String,
     pub labels: Vec<Label>
 }
 
-#[derive(Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Collection {
+    #[serde(default = "default_id")]
     pub id: u32,
     pub name: String,
     pub description: String,
@@ -31,7 +35,9 @@ pub struct Label {
     pub name: String
 }
 
-// Implementation of Serialization and Deserialization methods for Label
+// Implementation of Serialization and Deserialization methods
+
+// Label Serialization
 
 impl Serialize for Label {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
@@ -41,6 +47,8 @@ impl Serialize for Label {
         serializer.serialize_str(self.name.as_str())
     }
 }
+
+// Label Deserialization
 
 struct LabelVisitor;
 
