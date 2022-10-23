@@ -4,6 +4,7 @@ import { ref } from 'vue'
 
 const route = useRoute()
 const collectionID = route.params.id
+const is_edit = (route.params.edit === "edit")
 
 const collections = ref([])
 const collection = ref([])
@@ -101,6 +102,10 @@ function addLabel() {
         }
     }
     label_editted.value = ''
+}
+
+if (is_edit) {
+    startEdit()
 }
 
 </script>

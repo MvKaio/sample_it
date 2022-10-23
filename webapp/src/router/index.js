@@ -20,7 +20,7 @@ const router = createRouter({
       component: () => import("../views/CreateCollectionView.vue"),
     },
     {
-      path: "/collection/:id",
+      path: "/collection/:id/:edit?",
       name: "Collection",
       component: () => import("../views/CollectionView.vue"),
     },

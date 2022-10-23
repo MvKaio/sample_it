@@ -37,7 +37,7 @@ async function deleteCollection(id) {
 
                     <div class="text-xl text-center inline space-x-5">
                         <!--  -->
-                        <router-link :to="{name: 'EditCollection', params: {id: collection.id}}">
+                        <router-link :to="{name: 'Collection', params: {id: collection.id, edit: 'edit'}}">
                             <font-awesome-icon icon="pen" class="link " />
                         </router-link>
                         <font-awesome-icon icon="trash" class="link hover:text-red-700"
