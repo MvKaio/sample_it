@@ -187,7 +187,8 @@ if (is_edit) {
                     </div>
                 </div>
             </div>
-
+            
+            <transition name="fade" mode="out-in">
             <div v-if="editting" class="h-[25%] w-full flex items-center justify-center">
                 <div class="h-full w-3/5">
                     <div class="w-full flex items-center justify-center">
@@ -219,7 +220,8 @@ if (is_edit) {
                             class="label-pure-black">{{lb}}</span></div>
                 </div>
             </div>
-
+            </transition>
+            <transition name="fade" mode="out-in">
             <div v-if="editting" class="space-x-4 h-[10%] flex items-center">
                 <div class="text-center w-full space-x-[1%]">
                     <input type="button" class="button" value="Save" @click="saveEdit">
@@ -236,6 +238,7 @@ if (is_edit) {
                     <input type="button" class="button" value="Delete Collection" @click="deleteCollection">
                 </div>
             </div>
+            </transition>
         </div>
     </div>
 
