@@ -112,7 +112,7 @@ var date = new Date();
                         v-on:keydown.enter.prevent=''>
                 </div>
                 <div v-else class="h-[5%] flex items-center justify-center">
-                    <h1 class="text-center text-2xl">Collection name: {{item.name}}</h1>
+                    <h1 class="text-center text-2xl">Item name: {{item.name}}</h1>
                 </div>
             </transition>
             <transition name="fade" mode="out-in">
