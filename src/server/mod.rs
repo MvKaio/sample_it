@@ -1,4 +1,5 @@
 use actix_web::{web, dev, HttpServer, App};
+use actix_cors::Cors;
 use std::error::Error;
 use std::sync::Mutex;
 
@@ -17,7 +18,12 @@ pub struct Server;
 impl Server {
 	pub async fn start(state: web::Data<ServerState>) -> Result<dev::Server, Box<dyn Error>> {
 		let server = HttpServer::new(move || {
-			let cors = Cors::default().allow_any_origin().send_wildcard();
+			let cors = Cors::default()
+                .allow_any_origin()
+                .send_wildcard()
+                .allowed_methods(vec!["GET", "POST", "PUT", "DELETE"])
+                .allowed_headers(vec![http::header::AUTHORIZATION, http::header::ACCEPT])
+                .allowed_header(http::header::CONTENT_TYPE);
 			App::new()
 				.wrap(cors)
 				.app_data(state.clone())
