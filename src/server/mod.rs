@@ -24,12 +24,14 @@ impl Server {
                 .allowed_methods(vec!["GET", "POST", "PUT", "DELETE"])
                 .allowed_headers(vec![http::header::AUTHORIZATION, http::header::ACCEPT])
                 .allowed_header(http::header::CONTENT_TYPE);
+
 			App::new()
 				.wrap(cors)
 				.app_data(state.clone())
 				.service(routes::get_home)
 				.service(routes::get_collections)
 				.service(routes::post_collection)
+				.service(routes::get_collection_by_id)
 		})
 			.bind(("127.0.0.1", 3000))?
 			.run();
@@ -42,7 +44,7 @@ pub async fn run() -> Result<(), Box<dyn Error>> {
 	let server = Server::start(web::Data::new(ServerState {
         connection: Mutex::new(database::connect().unwrap())
 	})).await.unwrap();	
-	println!("Server is running on http://localhost:8080");
+	println!("Server is running on http://localhost:3000");
 	println!("Press Ctrl-C to close it");
 	server.await?;
 	Ok(())

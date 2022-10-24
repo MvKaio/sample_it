@@ -1,4 +1,4 @@
-use actix_web::{web, get, post, put, delete, HttpResponse, Responder};
+use actix_web::{web, get, post, put, delete, HttpRequest, HttpResponse, Responder};
 use actix_web::http::header::ContentType;
 use crate::database;
 use crate::database::model::Collection;
@@ -32,4 +32,18 @@ async fn post_collection(req: web::Json<Collection>, data: web::Data<ServerState
 	HttpResponse::Created()
 		.content_type(ContentType::json())
 		.body(response)
+}
+
+#[get("/collections/{id}")]
+async fn get_collection_by_id(req: HttpRequest, data: web::Data<ServerState>) -> impl Responder {
+    println!("GET collections/id");
+    let id: u32 = req.match_info().get("id").unwrap().parse().unwrap();
+    let connection = data.connection.lock().unwrap();
+
+    let collection = database::functions::get_collection(id, &connection).unwrap();
+    let response = serde_json::to_string(&collection).unwrap();
+
+    HttpResponse::Ok()
+        .content_type(ContentType::json())
+        .body(response)
 }

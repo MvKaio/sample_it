@@ -20,9 +20,7 @@ pub fn get_collections(connection: &Connection) -> Result<Vec<Collection>, Box<d
         })
     })?;
 
-    let query_result = query_result.map(|opt| {
-        opt.unwrap()
-    });
+    let query_result = query_result.map(|opt| opt.unwrap());
     let collections = query_result.map(|collection| {
         let mut collection_with_labels = collection.clone();
         collection_with_labels.labels = get_collection_labels(collection.id, connection).unwrap();
@@ -38,6 +36,32 @@ pub fn get_collections(connection: &Connection) -> Result<Vec<Collection>, Box<d
     let collections: Vec<Collection> = collections.collect();
 
     Ok(collections)
+}
+
+pub fn get_collection(collection_id: u32, connection: &Connection) -> Result<Collection, Box<dyn Error>> {
+    let mut statement = connection.prepare(format!("\
+        SELECT * FROM Collections
+        WHERE CollectionId = {}
+    ", collection_id).as_str())?;
+
+    let query_result = statement.query_map([], |row| {
+        Ok(Collection {
+            id: row.get("CollectionId")?,
+            name: row.get("CollectionName")?,
+            description: row.get("CollectionDescription")?,
+            created_at: row.get("CreatedAt")?,
+            updated_at: row.get("UpdatedAt")?,
+            items: vec![],
+            labels: vec![]
+        })
+    })?;
+    let mut query_result = query_result.map(|opt| opt.unwrap());
+
+    let mut collection = query_result.next().unwrap();
+    collection.labels = get_collection_labels(collection.id, connection).unwrap();
+    collection.items = get_collection_items(collection.id, connection).unwrap();
+
+    Ok(collection)
 }
 
 pub fn get_collection_items(collection_id: u32, connection: &Connection) -> Result<Vec<Item>, Box<dyn Error>> {
