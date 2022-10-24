@@ -13,12 +13,14 @@ use rand::thread_rng;
 use rand::seq::SliceRandom;
 
 pub fn solve(sample: Sample, connection: &Connection) -> Result<SampleResult, Box<dyn Error>> {
-    let collection = database::functions::get_collection(sample.collection_id, connection)?;
+    let mut collection = database::functions::get_collection(sample.collection_id, connection)?;
     let constraints: Vec<Constraint> = sample.constraints.iter().map(|cons| {
         let mut new_constraint = cons.clone();
         new_constraint.label = (collection.labels.iter().find(|l| l.name == cons.label.name).unwrap()).clone();
         new_constraint
     }).collect();
+
+    collection.items.shuffle(&mut thread_rng());
 
     // variables -> one for each item [indexed by id]
     let mut variables: HashMap<u32, Variable> = HashMap::new();
@@ -64,12 +66,6 @@ pub fn solve(sample: Sample, connection: &Connection) -> Result<SampleResult, Bo
         if solution.value(var.clone()) > 0.0 {
             items.push(item.clone());
         }
-    }
-
-    items.shuffle(&mut thread_rng());
-
-    while items.len() > sample.size as usize {
-        items.pop();
     }
 
     Ok(SampleResult::Solved { items })

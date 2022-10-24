@@ -4,9 +4,27 @@ An interface for managing collections of labeled items and generating random sub
 
 ## Table of Contents
 1. [Developers](#developers)
-2. [Technologies](#technologies)
+2. [Building and running](#building-and-running)
 3. [Sprint Backlog](#sprint-backlog)
-4. [Product Backlog](#product-backlog)
+4. [Review](#review)
+5. [Product Backlog](#product-backlog)
+
+## Building and running
+
+### Dependencies
+
+- Backend: [Rust](https://www.rust-lang.org/);
+- [SQLite](https://www.sqlite.org/index.html): Relational database;
+- [CBC](https://github.com/coin-or/Cbc): Open-Source solver for linear programs;
+- Frontend: [nodejs and npm](https://nodejs.org/en/).
+
+### Back-end Server
+
+Just execute `cargo run`. The server will be running at `localhost:3000`.
+
+### Front-end Server
+
+Just execute `npm run dev`. The website will be running at `localhost:5173`.
 
 ## Developers
 
@@ -15,14 +33,11 @@ An interface for managing collections of labeled items and generating random sub
 - Kaio Vieira - Backend
 - Mariano Fernandes - Backend
 
-## Technologies
+This project was developed as an assignment for the Software Engineering class @dcc/ufmg 2022-2.
 
-- Backend: [Rust](https://www.rust-lang.org/), using the [actix framework](https://github.com/actix/actix-web);
-- [SQLite](https://www.sqlite.org/index.html): Relational database;
-- [CBC](https://github.com/coin-or/Cbc): Open-Source solver for linear programs;
-- Frontend: [Vuejs](https://vuejs.org/).
+## Review
 
-This project is being developed as an assignment for the Software Engineering class @dcc/ufmg.
+The tasks below were suggested at the start of the sprint. The first and third user story were considered completed at the end. We decided not to tackle the second user story, as it wasn't very essential to a minimum viable product and would consume too much time to implement.
 
 ## Sprint Backlog
 
