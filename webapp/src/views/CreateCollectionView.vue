@@ -41,15 +41,15 @@ async function createCollection() {
 
         const dataJson = JSON.stringify(data);
 
-        const req = await fetch("http://localhost:3000/collections", {
+        await fetch("http://localhost:3000/collections", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: dataJson
         });
 
-       /*  if (!req.ok) {
-            throw new Error(req.status);
-        } */
+        /*  if (!req.ok) {
+             throw new Error(req.status);
+         } */
         if (items.value.length == 0) {
             alert("Empty collection created")
         }
@@ -235,8 +235,8 @@ const form_item = ref(false)
                             <h1 class="text-center text-2xl">Collection Items:</h1>
                         </div>
                         <div class="h-[80%] black-bg overflow-auto">
-                            <div class="mb-4" v-for="(item, index) in items"><span
-                                    class="label-pure-black">{{ item.name }}</span>
+                            <div class="mb-4" v-for="(item, index) in items"><span class="label-pure-black">{{ item.name
+                            }}</span>
                             </div>
                         </div>
                     </div>
@@ -246,8 +246,8 @@ const form_item = ref(false)
                             <h1 class="text-center text-2xl">Collection Labels:</h1>
                         </div>
                         <div class="h-[80%] black-bg overflow-auto">
-                            <div class=" mb-4" v-for="(lb, index) in labels"><span
-                                    class="label-pure-black">{{ lb }}</span>
+                            <div class=" mb-4" v-for="(lb, index) in labels"><span class="label-pure-black">{{ lb
+                            }}</span>
                             </div>
                         </div>
                     </div>
