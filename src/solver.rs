@@ -34,7 +34,7 @@ pub fn solve(sample: Sample, connection: &Connection) -> Result<SampleResult, Bo
     let mut system = problem.maximise(sum_all.clone())
                             .using(default_solver);
 
-    system = system.with(sum_all.geq(sample.size as i32));
+    system = system.with(sum_all.eq(sample.size as i32));
 
     // constraints -> one for each sample
     for constraint in constraints.iter() {

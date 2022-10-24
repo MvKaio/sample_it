@@ -246,7 +246,9 @@ pub fn push_collection(collection: &Collection, connection: &Connection, use_col
         |item| {
             let mut item_with_correct_labels = item.clone();
             item_with_correct_labels.labels = item.labels.iter().map(
-                |label| (collection.labels.iter().find(|l| l.name == label.name).unwrap()).clone()
+                |label| {
+                    (collection.labels.iter().find(|l| l.name == label.name).unwrap()).clone()
+                }
             ).collect();
             push_item(&item_with_correct_labels, collection.id, connection).unwrap()
         }).collect();

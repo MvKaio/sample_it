@@ -63,8 +63,6 @@ async function generateSample() {
         alert("Please add at least one constraint")
     }
     else {
-        alert("Sending Sample")
-
         const dataJson = JSON.stringify(data);
 
         const req = await fetch("http://localhost:3000/samples", {
@@ -158,7 +156,7 @@ const expand_items = ref(false)
 
                                         </div>
 
-                                        <div v-if="constraint.operator == 'more_or_equal'">
+                                        <div v-if="constraint.operator == 'greater_or_equal'">
                                             <span class="label">At least {{ constraint.number }} item(s) with label
                                                 {{ constraint.label }}</span>
                                             <font-awesome-icon icon="trash" class="link hover:text-red-600 mx-2"
@@ -249,7 +247,7 @@ const expand_items = ref(false)
 
                                         </div>
 
-                                        <div v-if="constraint.operator == 'more_or_equal'">
+                                        <div v-if="constraint.operator == 'greater_or_equal'">
                                             <span class="label">At least {{ constraint.number }} item(s) with label
                                                 {{ constraint.label }}</span>
                                             <font-awesome-icon icon="trash" class="link hover:text-red-600 mx-2"
@@ -379,7 +377,7 @@ const expand_items = ref(false)
                                     <select v-model="constraint_operator" class="w-[17%]">
                                         <option value="equal">=</option>
                                         <option value="less_or_equal">≤</option>
-                                        <option value="more_or_equal">≥</option>
+                                        <option value="greater_or_equal">≥</option>
                                     </select>
 
                                     <input v-model="constraint_number" class="w-[23%] number" type="number" min="0"
@@ -411,7 +409,7 @@ const expand_items = ref(false)
 
                                 </div>
 
-                                <div v-if="constraint.operator == 'more_or_equal'">
+                                <div v-if="constraint.operator == 'greater_or_equal'">
                                     <span class="label">At least {{ constraint.number }} item(s) with label
                                         {{ constraint.label }}</span>
                                     <font-awesome-icon icon="trash" class="link hover:text-red-600 mx-2"
