@@ -9,7 +9,7 @@ const is_edit = (route.params.edit === "edit")
 const collections = ref([])
 const collection = ref([])
 
-collection.value = await fetch(`http://localhost:3000/collections/${collectionID}/`).then((d) => d.json())
+collection.value = await fetch(`http://localhost:3000/collections/${collectionID}`).then((d) => d.json())
 
 async function deleteCollection() {
     const req = await fetch(`http://localhost:3000/collections/${collectionID}`, {
