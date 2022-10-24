@@ -31,7 +31,9 @@ impl Server {
 				.service(routes::get_home)
 				.service(routes::get_collections)
 				.service(routes::post_collection)
-				.service(routes::get_collection_by_id)
+				.service(routes::get_collection)
+				.service(routes::delete_collection)
+				.service(routes::update_collection)
 		})
 			.bind(("127.0.0.1", 3000))?
 			.run();

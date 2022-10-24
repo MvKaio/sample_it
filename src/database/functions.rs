@@ -64,6 +64,40 @@ pub fn get_collection(collection_id: u32, connection: &Connection) -> Result<Col
     Ok(collection)
 }
 
+
+pub fn delete_collection(collection_id: u32, connection: &Connection) -> Result<(), Box<dyn Error>> {
+    let mut statement = connection.prepare(format!("\
+        DELETE FROM ItemsLabels
+        WHERE CollectionId = {}
+    ", collection_id).as_str())?;
+
+    statement.execute([])?;
+    dbg!("Got as far as trying to delete");
+
+    let mut statement = connection.prepare(format!("\
+        DELETE FROM Labels
+        WHERE CollectionId = {}
+    ", collection_id).as_str())?;
+
+    statement.execute([])?;
+
+    let mut statement = connection.prepare(format!("\
+        DELETE FROM Items
+        WHERE CollectionId = {}
+    ", collection_id).as_str())?;
+
+    statement.execute([])?;
+
+    let mut statement = connection.prepare(format!("\
+        DELETE FROM Collections
+        WHERE CollectionId = {}
+    ", collection_id).as_str())?;
+
+    statement.execute([])?;
+
+    Ok(())
+}
+
 pub fn get_collection_items(collection_id: u32, connection: &Connection) -> Result<Vec<Item>, Box<dyn Error>> {
     let mut statement = connection.prepare(format!("\
         SELECT *

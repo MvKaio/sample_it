@@ -35,8 +35,33 @@ async fn post_collection(req: web::Json<Collection>, data: web::Data<ServerState
 }
 
 #[get("/collections/{id}")]
-async fn get_collection_by_id(req: HttpRequest, data: web::Data<ServerState>) -> impl Responder {
-    println!("GET collections/id");
+async fn get_collection(req: HttpRequest, data: web::Data<ServerState>) -> impl Responder {
+    let id: u32 = req.match_info().get("id").unwrap().parse().unwrap();
+    let connection = data.connection.lock().unwrap();
+
+    let collection = database::functions::get_collection(id, &connection).unwrap();
+    let response = serde_json::to_string(&collection).unwrap();
+
+    HttpResponse::Ok()
+        .content_type(ContentType::json())
+        .body(response)
+}
+
+#[delete("/collections/{id}")]
+async fn delete_collection(req: HttpRequest, data: web::Data<ServerState>) -> impl Responder {
+    let id: u32 = req.match_info().get("id").unwrap().parse().unwrap();
+    let connection = data.connection.lock().unwrap();
+
+    database::functions::delete_collection(id, &connection).unwrap();
+
+    HttpResponse::Ok()
+        .content_type(ContentType::html())
+        .body("Collection Deleted Successfully")
+}
+
+
+#[put("/collections/{id}")]
+async fn update_collection(req: HttpRequest, data: web::Data<ServerState>) -> impl Responder {
     let id: u32 = req.match_info().get("id").unwrap().parse().unwrap();
     let connection = data.connection.lock().unwrap();
 
