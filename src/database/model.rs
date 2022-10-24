@@ -52,9 +52,9 @@ pub struct Constraint {
 pub struct Sample {
     #[serde(default = "default_id")]
     pub id: u32,
-    pub collection_id: u32,
     pub name: String,
     pub description: String,
+    pub collection_id: u32,
     pub size: u32,
     pub constraints: Vec<Constraint>
 }
