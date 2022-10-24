@@ -43,11 +43,11 @@ function deleteConstraint(index) {
 
 async function generateSample() {
     const data = {
-        collectionID: collectionID,
-        sample_name: sample_name.value,
-        sample_description: sample_description.value,
-        sample_size: sample_size.value,
-        sample_constraints: constraints.value,
+        collection_id: collectionID,
+        name: sample_name.value,
+        description: sample_description.value,
+        size: sample_size.value,
+        constraints: constraints.value,
     }
     if (sample_name.value.length < 1) {
         alert("Please add a name to your sample")
