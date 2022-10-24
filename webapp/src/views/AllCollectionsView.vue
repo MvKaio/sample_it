@@ -10,8 +10,6 @@ async function deleteCollection(id) {
         method: "DELETE"
     });
 
-    const res = await req.json();
-
     collections.value = await fetch('http://localhost:3000/collections').then((d) => d.json())
 }
 

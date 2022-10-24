@@ -16,8 +16,6 @@ async function deleteCollection() {
         method: "DELETE"
     });
 
-    const res = await req.json();
-
     fetch('http://localhost:3000/collections')
         .then(r => r.json())
         .then(r => collections.value = r)
