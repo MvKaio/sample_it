@@ -37,29 +37,30 @@ pub struct Collection {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
-enum Operator {
+pub enum Operator {
     LessOrEqual, Equal, GreaterOrEqual
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Constraint {
-    operator: Operator,
-    number: u32,
-    label: String
+    pub operator: Operator,
+    pub number: u32,
+    pub label: Label
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Sample {
     #[serde(default = "default_id")]
-    id: u32,
-    collection_id: u32,
-    name: String,
-    description: String,
-    size: u32,
-    constraints: Vec<Constraint>
+    pub id: u32,
+    pub collection_id: u32,
+    pub name: String,
+    pub description: String,
+    pub size: u32,
+    pub constraints: Vec<Constraint>
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
 pub enum SampleResult {
     SolutionNotFound,
     Solved { items: Vec<Item> }

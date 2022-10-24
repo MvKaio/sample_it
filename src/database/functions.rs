@@ -98,6 +98,8 @@ pub fn delete_collection(collection_id: u32, connection: &Connection) -> Result<
 }
 
 pub fn update_collection(collection_id: u32, collection: &Collection, connection: &Connection) -> Result<Collection, Box<dyn Error>> {
+    let mut collection = collection.clone();
+    collection.id = collection_id;
     delete_collection(collection_id, connection)?;
     push_collection(&collection, connection, true)
 }

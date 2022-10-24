@@ -60,7 +60,6 @@ async fn delete_collection(req: HttpRequest, data: web::Data<ServerState>) -> im
         .body("Collection Deleted Successfully")
 }
 
-
 #[put("/collections/{id:\\d+}")]
 async fn update_collection(req: web::Path<u32>, collection: web::Json<Collection>, data: web::Data<ServerState>) -> impl Responder {
     let id: u32 = req.into_inner();
@@ -75,9 +74,11 @@ async fn update_collection(req: web::Path<u32>, collection: web::Json<Collection
 }
 
 #[post("/samples")]
-async fn post_sample(req: web::Json<Sample>, _data: web::Data<ServerState>) -> impl Responder {
+async fn post_sample(req: web::Json<Sample>, data: web::Data<ServerState>) -> impl Responder {
     let sample = req.into_inner();
-    let solution = solver::solve(sample).unwrap();
+    let connection = data.connection.lock().unwrap();
+
+    let solution = solver::solve(sample, &connection).unwrap();
 	let response = serde_json::to_string(&solution).unwrap();
 
 	HttpResponse::Created()
