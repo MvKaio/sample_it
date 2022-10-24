@@ -7,11 +7,23 @@ import Header from './components/HeaderComponent.vue'
     <div class="wrapper mx-auto">
       <Header></Header>
       <Suspense>
-        <router-view v-slot="{ Component }">
-          <transition name="fade" mode="out-in">
-            <component :is="Component" />
-          </transition>
-        </router-view>
+        <template #default>
+          <router-view v-slot="{ Component }">
+            <transition name="fade" mode="out-in">
+              <component :is="Component" />
+            </transition>
+          </router-view>
+        </template>
+        <template #fallback>
+          <div class="component-container flex justify-center items-center">
+            <div class="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </template>
       </Suspense>
     </div>
   </div>
