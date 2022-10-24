@@ -36,9 +36,9 @@ async function deleteItem(index) {
         headers: { "Content-Type": "application/json" },
         body: dataJson
     });
-    if (!req.ok) {
+   /*  if (!req.ok) {
         throw new Error(req.status);
-    }
+    } */
 }
 
 //Definindo a data de alteração da coleção
@@ -77,9 +77,9 @@ async function saveEdit() {
         headers: { "Content-Type": "application/json" },
         body: dataJson
     });
-    if (!req.ok) {
+    /* if (!req.ok) {
         throw new Error(req.status);
-    }
+    } */
 
     toggleEdit()
 }

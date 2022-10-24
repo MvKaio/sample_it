@@ -69,9 +69,9 @@ async function generateSample() {
             body: dataJson
         });
 
-        if (!req.ok) {
+        /* if (!req.ok) {
             throw new Error(req.status);
-        }
+        } */
 
         clearInfo()
         clearConstraint()

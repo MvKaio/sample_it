@@ -37,9 +37,9 @@ async function updateCollection() {
             body: dataJson
         });
 
-        if (!req.ok) {
+        /* if (!req.ok) {
             throw new Error(req.status);
-        }
+        } */
         document.getElementById('collectionLink').click();
     }
     else {

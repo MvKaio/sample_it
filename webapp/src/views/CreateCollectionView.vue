@@ -47,9 +47,9 @@ async function createCollection() {
             body: dataJson
         });
 
-        if (!req.ok) {
+       /*  if (!req.ok) {
             throw new Error(req.status);
-        }
+        } */
         if (items.value.length == 0) {
             alert("Empty collection created")
         }
@@ -189,14 +189,6 @@ const form_item = ref(false)
                         </div>
                         <textarea type="text" class="textarea" id="desription" v-model="description"></textarea>
                     </div>
-
-
-                    <!-- <div class="input-group h-[10%] w-[60%] m-auto space-x-[5%]">
-                            <input type="text" class="field w-[60%]" id="label" v-model="item_label"
-                                v-on:keydown.enter.prevent='addItemLabel'>
-                            <input class="button w-[35%]" id="addItemLabelButton" type="button" value="Add New Label"
-                                v-on:click="addItemLabel">
-                        </div> -->
 
                     <div class="input-group h-[10%] w-3/5 m-auto space-x-[2%] py-[1%]">
                         <input type="text" class="field w-3/5 text-center" id="label" v-model="label"

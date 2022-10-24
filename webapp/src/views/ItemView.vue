@@ -25,9 +25,9 @@ async function deleteItem() {
         headers: { "Content-Type": "application/json" },
         body: dataJson
     });
-    if (!req.ok) {
+    /* if (!req.ok) {
         throw new Error(req.status);
-    }
+    } */
 }
 
 async function deleteItemLabel(index) {
@@ -39,6 +39,7 @@ const name_editted = ref('')
 const description_editted = ref('')
 const labels_editted = ref([])
 const label_editted = ref('')
+const item_label_select = ref('')
 
 function startEdit() {
     name_editted.value = item.value.name
@@ -68,9 +69,9 @@ async function saveEdit() {
         headers: { "Content-Type": "application/json" },
         body: dataJson
     });
-    if (!req.ok) {
-        throw new Error(req.status);
-    }
+    /*  if (!req.ok) {
+         throw new Error(req.status);
+     } */
 
     toggleEdit()
 }
@@ -93,6 +94,19 @@ function addLabel() {
     label_editted.value = ''
 }
 
+function addItemLabelSelect() {
+    if (item_label_select.value.length > 0 && !Array.from(labels_editted.value).includes(item_label_select.value)) {
+        labels_editted.value.push(item_label_select.value)
+    }
+    else {
+        if (Array.from(labels_editted.value).includes(item_label_select.value)) {
+            alert("Label already exists")
+        }
+    }
+    item_label_select.value = ''
+
+}
+
 if (is_edit) {
     startEdit()
 }
@@ -107,12 +121,12 @@ var date = new Date();
         <div class="text-center h-full overflow-auto">
             <transition name="fade" mode="out-in">
                 <div v-if="editting" class="h-[5%] flex items-center justify-center">
-                    <h1 class="text-center text-2xl">Item name: {{item.name}}</h1>
+                    <h1 class="text-center text-2xl">Item name: {{ item.name }}</h1>
                     <input type="text" class="field text-center mx-4" id="name_editted" v-model="name_editted"
                         v-on:keydown.enter.prevent=''>
                 </div>
                 <div v-else class="h-[5%] flex items-center justify-center">
-                    <h1 class="text-center text-2xl">Item name: {{item.name}}</h1>
+                    <h1 class="text-center text-2xl">Item name: {{ item.name }}</h1>
                 </div>
             </transition>
             <transition name="fade" mode="out-in">
@@ -131,7 +145,7 @@ var date = new Date();
                         <h1 class="text-center text-2xl">Item description: </h1>
                     </div>
                     <div class="h-[80%] black-bg text-left word-break overflow-auto">
-                        <span>{{item.description}}</span>
+                        <span>{{ item.description }}</span>
                     </div>
 
                 </div>
@@ -153,7 +167,7 @@ var date = new Date();
                         </div>
                         <div class="h-[80%] w-full black-bg overflow-auto">
                             <div class=" mb-4 mx-[1%]" v-for="(lb, index) in labels_editted"><span
-                                    class="label-pure-black">{{lb}}</span>
+                                    class="label-pure-black">{{ lb }}</span>
                                 <font-awesome-icon icon="trash" class="link hover:text-red-600 mx-2"
                                     @click="deleteItemLabel(index)" />
                             </div>
@@ -161,11 +175,28 @@ var date = new Date();
 
                     </div>
 
-                    <div class="h-full w-2/5 flex items-center justify-center space-x-[5%]">
-                        <input type="text" class="field w-3/5 text-center" id="label_editted" v-model="label_editted"
-                            v-on:keydown.enter.prevent='addLabel'>
-                        <input class="button w-[30%]" id="addLabelButton" type="button" value="Add Label"
-                            v-on:click="addLabel">
+                    <div class="h-full w-2/5 flex flex-col items-center justify-center space-y-[5%]">
+
+                        <div class="w-full space-x-[5%]">
+                            <select v-model="item_label_select" class="w-[55%]">
+                                <option v-for="(lb, index) in collection.labels">{{ lb }}
+                                </option>
+                            </select>
+                            <input class="button w-[35%]" id="addItemLabelButton" type="button" value="Add Label"
+                                v-on:click="addItemLabelSelect">
+                        </div>
+
+                        <div class="w-full space-x-[5%]">
+                            <input type="text" autocomplete="off" class="field w-3/5 text-center" id="label_editted"
+                                v-model="label_editted" v-on:keydown.enter.prevent='addLabel'>
+                            <input class="button w-[30%]" id="addLabelButton" type="button" value="Add New Label"
+                                v-on:click="addLabel">
+                        </div>
+
+
+
+
+
 
                     </div>
 
@@ -176,8 +207,9 @@ var date = new Date();
                         <h1 class="text-center text-2xl">item Labels:</h1>
                     </div>
                     <div class="h-[80%] black-bg overflow-auto">
-                        <div class=" mb-4 mx-[1%]" v-for="(lb, index) in item.labels"><span
-                                class="label-pure-black">{{lb}}</span></div>
+                        <div class=" mb-4 mx-[1%]" v-for="(lb, index) in item.labels"><span class="label-pure-black">{{
+                                lb
+                        }}</span></div>
                     </div>
                 </div>
             </transition>
