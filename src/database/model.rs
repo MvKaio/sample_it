@@ -36,10 +36,34 @@ pub struct Collection {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Sample {
-    id: u32
+#[serde(rename_all = "snake_case")]
+enum Operator {
+    LessOrEqual, Equal, GreaterOrEqual
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Constraint {
+    operator: Operator,
+    number: u32,
+    label: String
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Sample {
+    #[serde(default = "default_id")]
+    id: u32,
+    collection_id: u32,
+    name: String,
+    description: String,
+    size: u32,
+    constraints: Vec<Constraint>
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub enum SampleResult {
+    SolutionNotFound,
+    Solved { items: Vec<Item> }
+}
 
 // Implementation of Serialization and Deserialization methods
 

@@ -1,3 +1,4 @@
+mod solver;
 mod server;
 mod database;
 

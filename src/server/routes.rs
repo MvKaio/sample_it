@@ -1,9 +1,10 @@
 use actix_web::{web, get, post, put, delete, HttpRequest, HttpResponse, Responder};
 use actix_web::http::header::ContentType;
 use crate::database;
-use crate::database::model::Collection;
+use crate::database::model::{Collection, Sample};
 
 use super::ServerState;
+use crate::solver;
 
 #[get("/")]
 pub async fn get_home() -> impl Responder {
@@ -71,4 +72,15 @@ async fn update_collection(req: web::Path<u32>, collection: web::Json<Collection
     HttpResponse::Ok()
         .content_type(ContentType::json())
         .body(response)
+}
+
+#[post("/samples")]
+async fn post_sample(req: web::Json<Sample>, _data: web::Data<ServerState>) -> impl Responder {
+    let sample = req.into_inner();
+    let solution = solver::solve(sample).unwrap();
+	let response = serde_json::to_string(&solution).unwrap();
+
+	HttpResponse::Created()
+		.content_type(ContentType::json())
+		.body(response)
 }
