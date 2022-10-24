@@ -34,8 +34,8 @@
       "id": 2
     },
     {
-      "name": "Collection",
-      "description": "Collection Description",
+      "name": "Colecaoooo",
+      "description": "Collection Descriptionnnnnnnn",
       "labels": [
         "Label 1",
         "Label 2",
@@ -60,25 +60,28 @@
         "gjgfjfgh",
         "jgfjgf",
         "afdasfas",
-        "fasfdsaf"
+        "fasfdsaf",
+        "Add label",
+        "mais umaa"
       ],
-      "updated_at": "2022-10-22T18:50:51.473Z",
+      "updated_at": "2022-10-23T18:09:18.899Z",
       "created_at": "2022-10-22T18:37:18.629Z",
       "items": [
         {
-          "name": "Item 1",
-          "description": "Item 1 description",
+          "name": "Nome editado",
+          "description": "Description Editada",
           "labels": [
             "Label 1",
             "Label 2",
-            "Label 4"
-          ]
+            "Label 4",
+            "Label editadaa"
+          ],
+          "updated_at": "2022-10-23T20:09:14.097Z"
         },
         {
-          "name": "Item 2",
-          "description": "Item 2 description",
+          "name": "Item 2 editado",
+          "description": "Item 2 description editada",
           "labels": [
-            "Label 5",
             "Label 6",
             "Label 7",
             "Label 8",
@@ -99,8 +102,11 @@
             "jhgfjg",
             "jgfjh",
             "gjgfjfgh",
-            "jgfjgf"
-          ]
+            "jgfjgf",
+            "New Label",
+            "Label Editada"
+          ],
+          "updated_at": "2022-10-23T20:20:29.354Z"
         },
         {
           "name": "Item 3",
@@ -122,6 +128,62 @@
         }
       ],
       "id": 3
+    },
+    {
+      "name": "New Name",
+      "description": "Collection description",
+      "labels": [
+        "fgsfd",
+        "gdsfgds"
+      ],
+      "updated_at": "2022-10-23T20:54:29.060Z",
+      "created_at": "2022-10-23T20:53:56.411Z",
+      "items": [
+        {
+          "name": "Item ",
+          "description": "Item description",
+          "labels": [
+            "gdsfgds"
+          ]
+        }
+      ],
+      "id": 4
+    },
+    {
+      "name": "adsaf",
+      "description": "fadsfads",
+      "labels": [
+        "ffasfs",
+        "fasfsa"
+      ],
+      "updated_at": "2022-10-23T20:55:04.408Z",
+      "created_at": "2022-10-23T20:55:04.408Z",
+      "items": [],
+      "id": 5
+    },
+    {
+      "name": "fasfasfs",
+      "description": "fadfsaf",
+      "labels": [
+        "fasdfsaf",
+        "fasfdsaf"
+      ],
+      "updated_at": "2022-10-23T20:55:04.408Z",
+      "created_at": "2022-10-23T20:55:04.408Z",
+      "items": [],
+      "id": 6
+    },
+    {
+      "name": "fasfasf",
+      "description": "afdadfasf",
+      "labels": [
+        "fasdfasf",
+        "fasfsafdsa"
+      ],
+      "updated_at": "2022-10-23T20:55:04.408Z",
+      "created_at": "2022-10-23T20:55:04.408Z",
+      "items": [],
+      "id": 10
     }
   ],
   "samples": [

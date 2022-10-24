@@ -26,7 +26,7 @@ function addConstraint() {
     const constraint = {
         label: constraint_label.value,
         operator: constraint_operator.value,
-        number: constraint_number.value,  
+        number: constraint_number.value,
     }
 
     if (constraint.operator.length > 0 && constraint.number > 0 && constraint.label.length > 0) {
@@ -132,9 +132,7 @@ const constraints = ref([])
                 </div>
 
                 <div class="space-x-4 h-[10%] flex items-center">
-                    <div class="text-center w-full">
-                        <input type="button" class="button" value="Edit Collection">
-                    </div>
+
                 </div>
             </div>
             <div class="text-center h-full">
@@ -186,7 +184,8 @@ const constraints = ref([])
                                     <option value="more_or_equal">≥</option>
                                 </select>
 
-                                <input v-model="constraint_number" class="w-[23%] number" type="number" min="0" :max="sample_size">
+                                <input v-model="constraint_number" class="w-[23%] number" type="number" min="0"
+                                    :max="sample_size">
 
                             </div>
 

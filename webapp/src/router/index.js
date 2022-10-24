@@ -20,7 +20,7 @@ const router = createRouter({
       component: () => import("../views/CreateCollectionView.vue"),
     },
     {
-      path: "/collection/:id",
+      path: "/collection/:id/:edit?",
       name: "Collection",
       component: () => import("../views/CollectionView.vue"),
     },
@@ -30,12 +30,7 @@ const router = createRouter({
       component: () => import("../views/GenerateSampleView.vue"),
     },
     {
-      path: "/editCollection/:id",
-      name: "EditCollection",
-      component: () => import("../views/EditCollectionView.vue"),
-    },
-    {
-      path: "/item/:collectionid/:itemid",
+      path: "/item/:collectionid/:itemid/:edit?",
       name: "View Item",
       component: () => import("../views/ItemView.vue"),
     },
