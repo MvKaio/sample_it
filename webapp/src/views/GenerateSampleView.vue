@@ -7,7 +7,7 @@ const collectionID = route.params.id
 
 const collection = ref([])
 
-collection.value = await fetch(`http://localhost:3000/collections/${collectionID}/`).then((d) => d.json())
+collection.value = await fetch(`http://localhost:3000/collections/${collectionID}`).then((d) => d.json())
 
 function clearConstraint() {
     constraint_operator.value = '';

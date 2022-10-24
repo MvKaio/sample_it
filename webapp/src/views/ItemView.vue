@@ -9,7 +9,7 @@ const is_edit = (route.params.edit === "edit")
 
 const collection = ref([])
 const item = ref([])
-collection.value = await fetch(`http://localhost:3000/collections/${collectionID}/`).then((d) => d.json())
+collection.value = await fetch(`http://localhost:3000/collections/${collectionID}`).then((d) => d.json())
 
 item.value = collection.value.items[itemID]
 

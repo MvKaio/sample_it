@@ -50,6 +50,9 @@ async function createCollection() {
         if (!req.ok) {
             throw new Error(req.status);
         }
+        if (items.value.length == 0) {
+            alert("Empty collection created")
+        }
         clearCollectionFields();
         clearItemFields();
         form_item.value = false;
@@ -203,7 +206,7 @@ const form_item = ref(false)
                     </div>
                     <div class="flex flex-col pt-4 space-y-4 h-[40%] w-3/5 m-auto overflow-auto">
                         <div v-for="(lb, index) in labels" class="inline">
-                            <span class="label">{{lb}}</span>
+                            <span class="label">{{ lb }}</span>
                             <font-awesome-icon icon="trash" class="link hover:text-red-600 mx-2"
                                 @click="deleteLabel(index)" />
                         </div>
@@ -222,7 +225,7 @@ const form_item = ref(false)
                 <!-- div dados collection -->
                 <div class="text-center h-full overflow-auto">
                     <div class="h-[5%] flex items-center justify-center">
-                        <h1 class="text-center text-2xl">Collection name: {{name}}</h1>
+                        <h1 class="text-center text-2xl">Collection name: {{ name }}</h1>
 
                     </div>
                     <div class="h-[30%] w-[100%] items-center justify-center">
@@ -230,7 +233,7 @@ const form_item = ref(false)
                             <h1 class="text-center text-2xl">Collection description: </h1>
                         </div>
                         <div class="h-[80%] black-bg text-left word-break overflow-auto">
-                            <span>{{description}}</span>
+                            <span>{{ description }}</span>
                         </div>
 
                     </div>
@@ -241,7 +244,7 @@ const form_item = ref(false)
                         </div>
                         <div class="h-[80%] black-bg overflow-auto">
                             <div class="mb-4" v-for="(item, index) in items"><span
-                                    class="label-pure-black">{{item.name}}</span>
+                                    class="label-pure-black">{{ item.name }}</span>
                             </div>
                         </div>
                     </div>
@@ -252,7 +255,7 @@ const form_item = ref(false)
                         </div>
                         <div class="h-[80%] black-bg overflow-auto">
                             <div class=" mb-4" v-for="(lb, index) in labels"><span
-                                    class="label-pure-black">{{lb}}</span>
+                                    class="label-pure-black">{{ lb }}</span>
                             </div>
                         </div>
                     </div>
@@ -288,7 +291,7 @@ const form_item = ref(false)
                         </div>
                         <div class="input-group h-[10%] w-[60%] m-auto space-x-[5%]">
                             <select v-model="item_label_select" class="w-[60%]">
-                                <option v-for="(lb, index) in labels">{{lb}}
+                                <option v-for="(lb, index) in labels">{{ lb }}
                                 </option>
                             </select>
                             <input class="button w-[35%]" id="addItemLabelButton" type="button" value="Add Item Label"
@@ -297,7 +300,7 @@ const form_item = ref(false)
                         </div>
                         <div class="flex flex-col pt-4 space-y-4 h-[30%] w-3/5 m-auto overflow-auto">
                             <div v-for="(lb, index) in item_labels" class="inline">
-                                <span class="label">{{lb}}</span>
+                                <span class="label">{{ lb }}</span>
                                 <font-awesome-icon icon="trash" class="link hover:text-red-600 mx-2"
                                     @click="deleteItemLabel(index)" />
                             </div>
