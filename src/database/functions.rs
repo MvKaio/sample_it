@@ -99,7 +99,7 @@ pub fn delete_collection(collection_id: u32, connection: &Connection) -> Result<
 
 pub fn update_collection(collection_id: u32, collection: &Collection, connection: &Connection) -> Result<Collection, Box<dyn Error>> {
     delete_collection(collection_id, connection)?;
-    push_collection(&collection, connection)
+    push_collection(&collection, connection, true)
 }
 
 pub fn get_collection_items(collection_id: u32, connection: &Connection) -> Result<Vec<Item>, Box<dyn Error>> {
@@ -206,19 +206,35 @@ pub fn push_label(label: &Label, collection_id: u32, connection: &Connection) ->
     Ok(label)
 }
 
-pub fn push_collection(collection: &Collection, connection: &Connection) -> Result<Collection, Box<dyn Error>> {
-    let mut statement = connection.prepare(format!("
-        INSERT INTO Collections (CollectionName, CollectionDescription, CreatedAt, UpdatedAt)
-        VALUES ('{}', '{}', '{}', '{}')
-    ",  collection.name,
-        collection.description,
-        collection.created_at.format("%+"),
-        collection.updated_at.format("%+")).as_str())?;
-    
+pub fn push_collection(collection: &Collection, connection: &Connection, use_collection_id: bool) -> Result<Collection, Box<dyn Error>> {
+    let mut statement = 
+        if use_collection_id {
+            connection.prepare(format!("
+                INSERT INTO Collections (CollectionId, CollectionName, CollectionDescription, CreatedAt, UpdatedAt)
+                VALUES ('{}', '{}', '{}', '{}', '{}')
+                ",
+                collection.id,  
+                collection.name,
+                collection.description,
+                collection.created_at.format("%+"),
+                collection.updated_at.format("%+")).as_str()
+            )?
+        } else {
+            connection.prepare(format!("
+            INSERT INTO Collections (CollectionName, CollectionDescription, CreatedAt, UpdatedAt)
+            VALUES ('{}', '{}', '{}', '{}')
+            ",     
+                collection.name,
+                collection.description,
+                collection.created_at.format("%+"),
+                collection.updated_at.format("%+")).as_str()
+            )?
+        };
     let rowid = statement.insert([])?;
-
     let mut collection = collection.clone();
-    collection.id = rowid as u32;
+    if use_collection_id {
+        collection.id = rowid as u32;
+    }
 
     collection.labels = collection.labels.iter().map(
         |label| push_label(label, collection.id, connection).unwrap()

@@ -27,7 +27,7 @@ async fn post_collection(req: web::Json<Collection>, data: web::Data<ServerState
     let new_collection = req.into_inner();
 
     let connection = data.connection.lock().unwrap();
-    let new_collection = database::functions::push_collection(&new_collection, &connection).unwrap();
+    let new_collection = database::functions::push_collection(&new_collection, &connection, false).unwrap();
 	let response = serde_json::to_string(&new_collection).unwrap();
 
 	HttpResponse::Created()
