@@ -17,13 +17,15 @@ pub struct Server;
 impl Server {
 	pub async fn start(state: web::Data<ServerState>) -> Result<dev::Server, Box<dyn Error>> {
 		let server = HttpServer::new(move || {
+			let cors = Cors::default().allow_any_origin().send_wildcard();
 			App::new()
+				.wrap(cors)
 				.app_data(state.clone())
 				.service(routes::get_home)
 				.service(routes::get_collections)
 				.service(routes::post_collection)
 		})
-			.bind(("127.0.0.1", 8080))?
+			.bind(("127.0.0.1", 3000))?
 			.run();
 
 		Ok(server)
