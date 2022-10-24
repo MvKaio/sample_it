@@ -84,6 +84,9 @@ function toggleEdit() {
 function addLabel() {
 
     if (label_editted.value.length > 0 && !Array.from(labels_editted.value).includes(label_editted.value)) {
+        if (!Array.from(collection.value.labels).includes(label_editted.value)) {
+            collection.value.labels.push(label_editted.value)
+        }
         labels_editted.value.push(label_editted.value)
     }
     else {

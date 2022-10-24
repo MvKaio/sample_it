@@ -5,17 +5,34 @@
       "description": "Collection description",
       "labels": [
         "fgsfd",
-        "gdsfgds"
+        "gdsfgds",
+        "fasfdfsa",
+        "marcos",
+        "mitotinho"
       ],
-      "updated_at": "2022-10-23T20:54:29.060Z",
+      "updated_at": "2022-10-24T05:19:58.547Z",
       "created_at": "2022-10-23T20:53:56.411Z",
       "items": [
         {
-          "name": "Item ",
-          "description": "Item description",
+          "name": "Item asfdas",
+          "description": "Item descriptionfasfdasf",
           "labels": [
-            "gdsfgds"
-          ]
+            "gdsfgds",
+            "fgsfd",
+            "fdasfa",
+            "fasfdaf"
+          ],
+          "updated_at": "2022-10-24T05:15:49.752Z"
+        },
+        {
+          "name": "afasfdfdsa",
+          "description": "fasdfaf",
+          "labels": [
+            "fasfdfsa",
+            "marcos",
+            "mitotinho"
+          ],
+          "updated_at": "2022-10-24T05:24:08.576Z"
         }
       ],
       "id": 4
