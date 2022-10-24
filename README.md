@@ -5,8 +5,8 @@ An interface for managing collections of labeled items and generating random sub
 ## Table of Contents
 1. [Developers](#developers)
 2. [Building and running](#building-and-running)
-3. [Sprint Backlog](#sprint-backlog)
-4. [Review](#review)
+3. [Review](#review)
+4. [Sprint Backlog](#sprint-backlog)
 5. [Product Backlog](#product-backlog)
 
 ## Building and running
