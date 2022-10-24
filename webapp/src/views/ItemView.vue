@@ -154,14 +154,6 @@ var date = new Date();
                 </div>
             </transition>
 
-
-
-
-
-
-
-
-
             <transition name="fade" mode="out-in">
                 <div v-if="editting" class="h-[55%] w-full flex items-center justify-center">
                     <div class="h-full w-3/5">

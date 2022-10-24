@@ -110,11 +110,6 @@ if (is_edit) {
                     
 <template>
     <div class="component-container">
-        <!-- <h1 class="text-center text-2xl">Collection name: {{collection.name}}</h1>
-        <h1 class="text-center text-2xl pt-4">Collection description: </h1>
-        <span>{{collection.description}}</span>
-        <h1 class="text-center text-2xl">Collection Items:</h1>
-        <div v-for="(item, index) in collection.items">{{item.name}}</div> -->
 
         <div class="text-center h-full overflow-auto">
             <transition name="fade" mode="out-in">
