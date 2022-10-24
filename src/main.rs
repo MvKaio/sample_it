@@ -4,6 +4,6 @@ mod database;
 
 #[actix_web::main]
 async fn main() {
-    database::connect();
+    database::connect().ok();
     server::run().await.unwrap();
 }
