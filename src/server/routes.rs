@@ -60,12 +60,12 @@ async fn delete_collection(req: HttpRequest, data: web::Data<ServerState>) -> im
 }
 
 
-#[put("/collections/{id}")]
-async fn update_collection(req: HttpRequest, data: web::Data<ServerState>) -> impl Responder {
-    let id: u32 = req.match_info().get("id").unwrap().parse().unwrap();
+#[put("/collections/{id:\\d+}")]
+async fn update_collection(req: web::Path<u32>, collection: web::Json<Collection>, data: web::Data<ServerState>) -> impl Responder {
+    let id: u32 = req.into_inner();
     let connection = data.connection.lock().unwrap();
 
-    let collection = database::functions::get_collection(id, &connection).unwrap();
+    let collection = database::functions::update_collection(id, &collection, &connection).unwrap();
     let response = serde_json::to_string(&collection).unwrap();
 
     HttpResponse::Ok()

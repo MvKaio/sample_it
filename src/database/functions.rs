@@ -72,7 +72,6 @@ pub fn delete_collection(collection_id: u32, connection: &Connection) -> Result<
     ", collection_id).as_str())?;
 
     statement.execute([])?;
-    dbg!("Got as far as trying to delete");
 
     let mut statement = connection.prepare(format!("\
         DELETE FROM Labels
@@ -96,6 +95,11 @@ pub fn delete_collection(collection_id: u32, connection: &Connection) -> Result<
     statement.execute([])?;
 
     Ok(())
+}
+
+pub fn update_collection(collection_id: u32, collection: &Collection, connection: &Connection) -> Result<Collection, Box<dyn Error>> {
+    delete_collection(collection_id, connection)?;
+    push_collection(&collection, connection)
 }
 
 pub fn get_collection_items(collection_id: u32, connection: &Connection) -> Result<Vec<Item>, Box<dyn Error>> {

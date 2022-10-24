@@ -17,6 +17,12 @@ pub struct Item {
     pub labels: Vec<Label>
 }
 
+#[derive(Debug, Clone)]
+pub struct Label {
+    pub id: u32,
+    pub name: String
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Collection {
     #[serde(default = "default_id")]
@@ -29,11 +35,11 @@ pub struct Collection {
     pub labels: Vec<Label>,
 }
 
-#[derive(Debug, Clone)]
-pub struct Label {
-    pub id: u32,
-    pub name: String
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Sample {
+    id: u32
 }
+
 
 // Implementation of Serialization and Deserialization methods
 
