@@ -234,7 +234,7 @@ pub fn push_collection(collection: &Collection, connection: &Connection, use_col
         };
     let rowid = statement.insert([])?;
     let mut collection = collection.clone();
-    if use_collection_id {
+    if use_collection_id == false {
         collection.id = rowid as u32;
     }
 
