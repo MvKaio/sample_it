@@ -24,7 +24,8 @@ Just execute `cargo run`. The server will be running at `localhost:3000`.
 
 ### Front-end Server
 
-Just execute `npm run dev`. The website will be running at `localhost:5173`.
+The frontend is located in the folder `webapp`, all the commands should be ran inside this folder.
+To install the webapp's dependencies, run `npm install`. Then, execute `npm run dev`. The website will be running at `localhost:5173`.
 
 ## Developers
 
