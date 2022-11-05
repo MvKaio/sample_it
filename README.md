@@ -2,9 +2,11 @@
 
 An interface for managing collections of labeled items and generating random subsets with specified restrictions.
 
+This project was developed as an assignment for the Software Engineering class @dcc/ufmg 2022-2.
+
 ## Table of Contents
-1. [Developers](#developers)
-2. [Building and running](#building-and-running)
+1. [Building and running](#building-and-running)
+2. [Developers](#developers)
 3. [Review](#review)
 4. [Sprint Backlog](#sprint-backlog)
 5. [Product Backlog](#product-backlog)
@@ -33,8 +35,6 @@ To install the webapp's dependencies, run `npm install`. Then, execute `npm run 
 - Gabriel Fialho - Frontend
 - Kaio Vieira - Backend
 - Mariano Fernandes - Backend
-
-This project was developed as an assignment for the Software Engineering class @dcc/ufmg 2022-2.
 
 ## Review
 
